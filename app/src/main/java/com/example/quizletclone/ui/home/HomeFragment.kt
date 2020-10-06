@@ -1,4 +1,4 @@
-package com.example.quizletclone.ui.login
+package com.example.quizletclone.ui.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,7 +9,7 @@ import com.example.quizletclone.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class RegisterFragment : Fragment() {
+class HomeFragment : Fragment() {
 
 
     override fun onCreateView(
@@ -17,7 +17,8 @@ class RegisterFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_register, container, false)
+        return inflater.inflate(R.layout.fragment_home, container, false)
     }
+
 
 }

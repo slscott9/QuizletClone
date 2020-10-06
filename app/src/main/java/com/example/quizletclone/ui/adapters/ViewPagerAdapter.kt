@@ -17,14 +17,16 @@ class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.PageVH>() {
     override fun onBindViewHolder(holder: PageVH, position: Int) = holder.itemView.run {
 
         when(position){
-            0 -> imageView.setImageResource(R.drawable.first_image_resized)
-            1 -> imageView.setImageResource(R.drawable.second_image_resized)
-            2 -> imageView.setImageResource(R.drawable.third_image_resized)
-            3 -> imageView.setImageResource(R.drawable.fourth_image_resized)
+            0 -> {
+                imageView.setImageResource(R.drawable.quizlet_logo)
+                imageView.setBackgroundResource(R.color.trans)
+            }
+            1 -> imageView.setImageResource(R.drawable.quizlet_search)
+            2 -> imageView.setImageResource(R.drawable.quizlet_logos)
         }
     }
 
-    override fun getItemCount(): Int  = 4
+    override fun getItemCount(): Int  = 3
 
     class PageVH(itemView: View) : RecyclerView.ViewHolder(itemView)
 
