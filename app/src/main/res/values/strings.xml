@@ -8,4 +8,7 @@
     <string name="or_login_with_email">OR LOGIN WITH EMAIL</string>
     <string name="google">Google</string>
     <string name="log_in">Log In</string>
+    <string name="logo_string">Over 90% of students who use Quizlet report higher grades</string>
+    <string name="icon_string">Learn in four different ways-choose what works for you!</string>
+    <string name="search_icon_string">Search more that 300 million sets already created by Quizlet users.</string>
 </resources>

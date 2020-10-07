@@ -7,27 +7,27 @@
     android:layout_height="match_parent"
     android:id="@+id/container">
 
+
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/ivOne"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
         android:backgroundTint="@color/trans"
         android:foregroundGravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvDescriptionForIcons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/ivOne"
+        app:layout_constraintStart_toStartOf="@+id/ivOne"
+        app:layout_constraintTop_toBottomOf="@+id/ivOne" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

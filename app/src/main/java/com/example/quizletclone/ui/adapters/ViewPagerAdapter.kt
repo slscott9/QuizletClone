@@ -18,11 +18,18 @@ class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.PageVH>() {
 
         when(position){
             0 -> {
-                imageView.setImageResource(R.drawable.quizlet_logo)
-                imageView.setBackgroundResource(R.color.trans)
+                ivOne.setImageResource(R.drawable.quizlet_logo)
+                tvDescriptionForIcons.text = resources.getString(R.string.logo_string)
             }
-            1 -> imageView.setImageResource(R.drawable.quizlet_search)
-            2 -> imageView.setImageResource(R.drawable.quizlet_logos)
+            1 -> {
+                ivOne.setImageResource(R.drawable.quizlet_search)
+                tvDescriptionForIcons.text = resources.getString(R.string.search_icon_string)
+            }
+            2 ->{
+                ivOne.setImageResource(R.drawable.cut_icons)
+                tvDescriptionForIcons.text = resources.getString(R.string.icon_string)
+
+            }
         }
     }
 
