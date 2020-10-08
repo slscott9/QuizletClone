@@ -2,13 +2,18 @@
     <string name="app_name">Quizlet Clone</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="enter_your_email">Enter your email</string>
-    <string name="enter_your_password">Enter your password</string>
+    <string name="register_email_hint">email@example.com</string>
+    <string name="register_password_hint">Enter your password</string>
+    <string name="register_username_hint">Create a username</string>
+    <string name="login_email_hint">Enter you email</string>
+    <string name="login_password_hint">Enter you password</string>
     <string name="quickly_login_with">QUICKLY LOGIN WITH</string>
     <string name="or_login_with_email">OR LOGIN WITH EMAIL</string>
     <string name="google">Google</string>
     <string name="log_in">Log In</string>
+    <string name="signup_btn">Sign up</string>
     <string name="logo_string">Over 90% of students who use Quizlet report higher grades</string>
     <string name="icon_string">Learn in four different ways-choose what works for you!</string>
     <string name="search_icon_string">Search more that 300 million sets already created by Quizlet users.</string>
+    <string name="or_sign_up_with_username">OR SIGN UP WITH USERNAME</string>
 </resources>

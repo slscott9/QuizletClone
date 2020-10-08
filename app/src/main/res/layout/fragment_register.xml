@@ -1,14 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.login.RegisterFragment">
+    tools:context=".ui.login.LoginFragment">
+
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
 
+        <ImageView
+            android:id="@+id/ivBackArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvQuicklyLoginTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/quickly_login_with"
+            app:layout_constraintStart_toStartOf="@+id/ivBackArrow"
+            app:layout_constraintTop_toBottomOf="@+id/ivBackArrow" />
+
+
+        <com.shobhitpuri.custombuttons.GoogleSignInButton
+            android:id="@+id/googleSignInButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="233dp"
+            android:text="@string/google"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tvQuicklyLoginTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvQuicklyLoginTitle" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/registerEmailInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            app:helperText="EMAIL ADDRESS"
+            app:helperTextEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/googleSignInButton"
+            app:layout_constraintTop_toBottomOf="@+id/tvRegisterEmailTitle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etRegisterEmail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/register_email_hint" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/registerUsernameInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:helperText="USERNAME"
+            app:helperTextEnabled="true"
+            app:layout_constraintEnd_toEndOf="@+id/registerEmailInputLayout"
+            app:layout_constraintStart_toStartOf="@+id/registerEmailInputLayout"
+            app:layout_constraintTop_toBottomOf="@id/registerEmailInputLayout">
+
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etRegisterUsername"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/register_username_hint" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/registerPasswordInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:helperText="PASSWORD"
+            app:endIconMode="password_toggle"
+            app:helperTextEnabled="true"
+            app:layout_constraintEnd_toEndOf="@+id/registerUsernameInputLayout"
+            app:layout_constraintStart_toStartOf="@+id/registerUsernameInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/registerUsernameInputLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etRegisterPassword"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPassword"
+                android:hint="@string/register_password_hint" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+            <Button
+                android:id="@+id/btnSignUp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/signup_btn"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="@+id/registerPasswordInputLayout"
+                app:layout_constraintStart_toStartOf="@+id/registerPasswordInputLayout"
+                app:layout_constraintTop_toBottomOf="@+id/registerPasswordInputLayout" />
+
+            <ProgressBar
+                android:id="@+id/loginProgressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnSignUp" />
+
+        <TextView
+            android:id="@+id/tvRegisterEmailTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/or_sign_up_with_username"
+            app:layout_constraintStart_toStartOf="@+id/googleSignInButton"
+            app:layout_constraintTop_toBottomOf="@+id/googleSignInButton"
+           />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </layout>
