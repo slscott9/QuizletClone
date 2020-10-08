@@ -2,9 +2,18 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/turquise</item>
-        <item name="colorPrimaryDark">@color/blueQuizlet</item>
+        <item name="colorPrimary">@color/blueQuizlet</item>
+        <item name="colorPrimaryDark">@color/turquise</item>
         <item name="colorAccent">@color/white</item>
+    </style>
+
+
+    <style name="ActionItem">
+        <item name="android:textSize">@dimen/text_size</item>
+        <item name="android:drawablePadding">@dimen/drawable_padding</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/normal_padding</item>
     </style>
 
 </resources>

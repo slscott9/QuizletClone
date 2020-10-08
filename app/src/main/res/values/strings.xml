@@ -16,4 +16,10 @@
     <string name="icon_string">Learn in four different ways-choose what works for you!</string>
     <string name="search_icon_string">Search more that 300 million sets already created by Quizlet users.</string>
     <string name="or_sign_up_with_username">OR SIGN UP WITH USERNAME</string>
+    <string name="tvSetsTitle">Sets</string>
+    <string name="tvFoldersTitle">Folders</string>
+    <string name="view_all">View all</string>
+    <string name="create_study_set">Create study set</string>
+    <string name="create_folder">Create folder</string>
+    <string name="create_class">Create class</string>
 </resources>

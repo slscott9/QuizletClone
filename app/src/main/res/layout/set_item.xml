@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvSetItem"
+        android:layout_width="300dp"
+        android:layout_height="103dp"
+        android:layout_marginLeft="16dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:id="@+id/tvSetName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="CS-3332 Sofwate engineering final"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvTermCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="108 terms"
+                app:layout_constraintStart_toStartOf="@+id/tvSetName"
+                app:layout_constraintTop_toBottomOf="@+id/tvSetName" />
+
+            <TextView
+                android:id="@+id/tvCircleProfile"
+                android:layout_width="21dp"
+                android:layout_height="21dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/circle"
+                app:layout_constraintStart_toStartOf="@+id/tvTermCount"
+                app:layout_constraintTop_toBottomOf="@+id/tvTermCount" />
+
+            <TextView
+                android:id="@+id/tvUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="TextView"
+                app:layout_constraintStart_toEndOf="@+id/tvCircleProfile"
+                app:layout_constraintTop_toTopOf="@+id/tvCircleProfile" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>
