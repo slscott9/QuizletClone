@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import com.example.quizletclone.R
 import com.example.quizletclone.databinding.BottomSheetBinding
 import com.example.quizletclone.ui.create.AddSetActivity
+import com.example.quizletclone.ui.create.CreateFolderDialogFragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -39,6 +40,12 @@ class BottomSheetFragment() : BottomSheetDialogFragment(){
         binding.tvCreateSet.setOnClickListener {
             val intent = Intent(requireActivity(), AddSetActivity::class.java)
             startActivity(intent)
+        }
+
+        binding.tvCreateFolder.setOnClickListener {
+            val createFolderDialogFragment = CreateFolderDialogFragment()
+            createFolderDialogFragment.show(parentFragmentManager, createFolderDialogFragment.tag)
+
         }
 
         //onClickListener  for create Folder that displays a dialog fragment maybe? then creates new folder takes user to the new folder

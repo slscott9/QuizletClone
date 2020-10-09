@@ -18,5 +18,16 @@ class AddSetActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolBar)
         supportActionBar?.setHomeButtonEnabled(true)
 
+
+        binding.fabAddSetTerm.setOnClickListener {
+           addTermDef()
+        }
+
+    }
+
+    private fun addTermDef() {
+        val parentLayout = binding.termDefContainer
+        val childLayout = layoutInflater.inflate(R.layout.term_definition_item, parentLayout, false)
+        parentLayout.addView(childLayout)
     }
 }

@@ -23,4 +23,8 @@
     <string name="create_folder">Create folder</string>
     <string name="create_class">Create class</string>
     <string name="create_set">Create set</string>
+    <string name="ok">OK</string>
+    <string name="cancel">CANCEL</string>
+    <string name="folder_name">Folder name</string>
+    <string name="description_optional">Description (optional)</string>
 </resources>

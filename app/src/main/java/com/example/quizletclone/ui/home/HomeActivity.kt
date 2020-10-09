@@ -10,6 +10,7 @@ import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
 import com.example.quizletclone.R
 import com.example.quizletclone.databinding.ActivityHomeBinding
+import com.example.quizletclone.ui.create.CreateFolderDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,6 +31,7 @@ class HomeActivity : AppCompatActivity() {
                     true
 
                 }
+
                 else -> false
             }
         }

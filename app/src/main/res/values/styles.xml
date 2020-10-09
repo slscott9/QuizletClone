@@ -16,4 +16,13 @@
         <item name="android:padding">@dimen/normal_padding</item>
     </style>
 
+
+    <style name="Theme.App.Dialog.FullScreen"
+        parent="Theme.MaterialComponents.Dialog">
+        <!-- (1)-->
+        <item name="android:windowIsFloating">true</item>
+        <!-- (2) -->
+        <item name="android:windowBackground">@color/white</item>
+    </style>
+
 </resources>
