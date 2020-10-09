@@ -1,20 +1,16 @@
 package com.example.quizletclone.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.Navigation
-import androidx.navigation.Navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.NavHostFragment.findNavController
-import androidx.navigation.fragment.findNavController
 import com.example.quizletclone.R
 import com.example.quizletclone.databinding.BottomSheetBinding
+import com.example.quizletclone.ui.create.AddSetActivity
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.bottom_sheet.*
 
 @AndroidEntryPoint
 class BottomSheetFragment() : BottomSheetDialogFragment(){
@@ -39,19 +35,25 @@ class BottomSheetFragment() : BottomSheetDialogFragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initView()
-    }
 
-    private fun initView() {
         binding.tvCreateSet.setOnClickListener {
-            findNavController().navigate(BottomSheetFragmentDirections.actionBottomSheetFragment3ToAddSetFragment4())
-        }
-        tvCreateFolder.setOnClickListener {
-        }
-        tvCreateClass.setOnClickListener {
+            val intent = Intent(requireActivity(), AddSetActivity::class.java)
+            startActivity(intent)
         }
 
+        //onClickListener  for create Folder that displays a dialog fragment maybe? then creates new folder takes user to the new folder
     }
+
+//    private fun initView() {
+//        binding.tvCreateSet.setOnClickListener {
+//            it.findNavController().navigate(BottomSheetFragmentDirections.actionBottomSheetFragment3ToAddSetFragment4())
+//        }
+//        tvCreateFolder.setOnClickListener {
+//        }
+//        tvCreateClass.setOnClickListener {
+//        }
+//
+//    }
 
 
 }

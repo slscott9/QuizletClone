@@ -12,8 +12,8 @@
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
         <action
-            android:id="@+id/action_registerFragment_to_navigation2"
-            app:destination="@id/navigation2" />
+            android:id="@+id/action_registerFragment_to_homeActivity"
+            app:destination="@id/homeActivity" />
     </fragment>
     <fragment
         android:id="@+id/homeLoginFragment"
@@ -27,8 +27,8 @@
             android:id="@+id/action_homeLoginFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
         <action
-            android:id="@+id/action_homeLoginFragment_to_navigation2"
-            app:destination="@id/navigation2" />
+            android:id="@+id/action_homeLoginFragment_to_homeActivity"
+            app:destination="@id/homeActivity" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -36,27 +36,11 @@
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_loginFragment_to_navigation2"
-            app:destination="@id/navigation2" />
+            android:id="@+id/action_loginFragment_to_homeActivity"
+            app:destination="@id/homeActivity" />
     </fragment>
-    <navigation android:id="@+id/navigation2"
-        app:startDestination="@id/homeActivity">
-        <activity
-            android:id="@+id/homeActivity"
-            android:name="com.example.quizletclone.ui.home.HomeActivity"
-            android:label="HomeActivity" />
-        <fragment
-            android:id="@+id/addSetFragment4"
-            android:name="com.example.quizletclone.ui.addset.AddSetFragment"
-            android:label="fragment_add_set"
-            tools:layout="@layout/fragment_add_set" />
-        <fragment
-            android:id="@+id/bottomSheetFragment3"
-            android:name="com.example.quizletclone.ui.home.BottomSheetFragment"
-            android:label="BottomSheetFragment" >
-            <action
-                android:id="@+id/action_bottomSheetFragment3_to_addSetFragment4"
-                app:destination="@id/addSetFragment4" />
-        </fragment>
-    </navigation>
+    <activity
+        android:id="@+id/homeActivity"
+        android:name="com.example.quizletclone.ui.home.HomeActivity"
+        android:label="HomeActivity" />
 </navigation>

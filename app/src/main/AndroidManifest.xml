@@ -19,8 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".HostMainNavActivity"></activity>
-        <activity android:name=".ui.home.HomeActivity" />
+        <activity android:name=".ui.create.AddSetActivity"
+            android:parentActivityName=".ui.home.HomeActivity"/>
+        <activity android:name=".ui.home.HomeActivity"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

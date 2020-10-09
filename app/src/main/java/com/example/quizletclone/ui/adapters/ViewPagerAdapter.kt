@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.quizletclone.ui.logofragments.IconsFragment
 import com.example.quizletclone.ui.logofragments.LogoFragment
-import com.example.quizletclone.ui.logofragments.SearchFragment
+import com.example.quizletclone.ui.logofragments.SearchLogoFragment
 
 class ViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
@@ -17,7 +17,7 @@ class ViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
     override fun createFragment(position: Int): Fragment {
         return when(position){
             0 -> LogoFragment()
-            1 -> SearchFragment()
+            1 -> SearchLogoFragment()
             else -> IconsFragment()
         }
     }

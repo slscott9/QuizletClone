@@ -139,6 +139,8 @@ dependencies {
     // Navigation Components
     implementation "androidx.navigation:navigation-fragment-ktx:2.3.0"
     implementation "androidx.navigation:navigation-ui-ktx:2.3.0"
+    // Feature module Support
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:2.3.0"
 
     implementation 'com.shobhitpuri.custombuttons:google-signin:1.0.0'
 
