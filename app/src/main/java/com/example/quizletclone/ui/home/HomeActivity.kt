@@ -2,6 +2,7 @@ package com.example.quizletclone.ui.home
 
 import android.app.Activity
 import android.content.ClipData
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
@@ -11,6 +12,9 @@ import androidx.navigation.findNavController
 import com.example.quizletclone.R
 import com.example.quizletclone.databinding.ActivityHomeBinding
 import com.example.quizletclone.ui.create.CreateFolderDialogFragment
+import com.example.quizletclone.ui.folders.FolderActivity
+import com.example.quizletclone.ui.profile.ProfileActivity
+import com.example.quizletclone.ui.search.SearchActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -32,8 +36,28 @@ class HomeActivity : AppCompatActivity() {
 
                 }
 
+                R.id.search_menu_item -> {
+                    startActivity(
+                        Intent(this, SearchActivity::class.java)
+                    )
+                    true
+                }
+
+                R.id.profile_menu_item -> {
+                    startActivity(
+                        Intent(this, ProfileActivity::class.java)
+                    )
+                    true
+                }
+
                 else -> false
             }
+        }
+
+        binding.tvViewAllFolders.setOnClickListener {
+            startActivity(
+                Intent(this, FolderActivity::class.java)
+            )
         }
     }
 

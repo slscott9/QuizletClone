@@ -7,7 +7,7 @@ import com.example.quizletclone.data.entities.Folder
 import com.example.quizletclone.data.entities.Set
 import com.example.quizletclone.data.entities.User
 
-@Database(entities = [User::class, Folder::class, Set::class], version = 2)
+@Database(entities = [User::class, Folder::class, Set::class], version = 4)
 abstract class QuizletDatabase : RoomDatabase() {
 
     abstract fun dao() : QuizletDao

@@ -27,4 +27,5 @@
     <string name="cancel">CANCEL</string>
     <string name="folder_name">Folder name</string>
     <string name="description_optional">Description (optional)</string>
+    <string name="add_folder">add folder</string>
 </resources>

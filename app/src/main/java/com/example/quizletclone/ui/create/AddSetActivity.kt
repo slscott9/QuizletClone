@@ -7,11 +7,17 @@ import android.widget.ScrollView
 import androidx.databinding.DataBindingUtil
 import com.example.quizletclone.R
 import com.example.quizletclone.databinding.ActivityAddSetBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_add_set.*
+import kotlinx.android.synthetic.main.set_item.view.*
+import kotlinx.android.synthetic.main.term_definition_item.view.*
 
+@AndroidEntryPoint
 class AddSetActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddSetBinding
+
+    private val views = ArrayList<View>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,14 +25,13 @@ class AddSetActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_set)
         binding.lifecycleOwner = this
 
-        setSupportActionBar(binding.toolBar)
-        supportActionBar?.setHomeButtonEnabled(true)
+//        setSupportActionBar(binding.toolBar)
+//        supportActionBar?.setHomeButtonEnabled(true)
 
         binding.fabAddSetTerm.setOnClickListener {
            addTermDef()
 
         }
-
     }
 
     private fun addTermDef() {
@@ -36,4 +41,18 @@ class AddSetActivity : AppCompatActivity() {
         binding.scrollView.fullScroll(View.FOCUS_DOWN)
 
     }
+
+//    private fun getChildViewInput() {
+//        val addTermContainer = binding.termDefContainer
+//        val childCount = addTermContainer.childCount
+//
+//        for(i in 0 until  childCount){
+//            var row = addTermContainer.getChildAt(i)
+//            row.term_definition_layout.etTermInput
+//        }
+//    }
+
+
+
+
 }
