@@ -19,7 +19,9 @@ data class Folder(
     @PrimaryKey
     val folderId: Int,
     val userEmail: String,
-    val name: String
+    val name: String,
+    val description: String?,
+    val userName: String
 )
 
 @Entity(tableName = "set_table")
@@ -49,7 +51,9 @@ fun FolderContainer.toNetworkModel() : List<NetworkFolder> {
         NetworkFolder(
             name = it.name,
             folderId = it.folderId,
-            userEmail = it.userEmail
+            userEmail = it.userEmail,
+            description = it.description,
+            userName = it.userName
         )
     }
 }

@@ -9,7 +9,8 @@ data class AccountRequest(
 
 data class AddFolderRequest(
     val folderName: String,
-    val userEmail: String
+    val userEmail: String,
+    val description: String?
 
 )
 

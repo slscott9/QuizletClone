@@ -19,7 +19,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.profile.ProfileActivity"></activity>
+        <activity android:name=".ui.folders.FolderViewActivity"></activity>
+        <activity android:name=".ui.profile.ProfileActivity" />
         <activity android:name=".ui.search.SearchActivity" />
         <activity
             android:name=".ui.folders.FolderActivity"

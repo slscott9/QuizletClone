@@ -27,7 +27,9 @@ data class SetListResponse(
 data class NetworkFolder(
     val name: String,
     val folderId: Int,
-    val userEmail: String
+    val userEmail: String,
+    val userName: String,
+    val description: String?
 )
 
 data class NetworkSet(
@@ -44,7 +46,9 @@ fun FolderListResponse.asDomainModel() : List<DomainFolder> {
         DomainFolder(
             name = it.name,
             folderId = it.folderId,
-            userEmail = it.userEmail
+            userEmail = it.userEmail,
+            userName = it.userName,
+            description = it.description
         )
     }
 }
@@ -67,7 +71,9 @@ fun FolderListResponse.asDatabaseModel() : List<Folder> {
         Folder(
             name = it.name,
             folderId = it.folderId,
-            userEmail = it.userEmail
+            userEmail = it.userEmail,
+            userName = it.userName,
+            description = it.description
         )
     }
 }

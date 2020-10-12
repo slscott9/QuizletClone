@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="folder"
+            type="com.example.quizletclone.data.domain.DomainFolder" />
+        <variable
+            name="clickListener"
+            type="com.example.quizletclone.ui.adapters.FolderListListener" />
+    </data>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:padding="16dp"
+        android:layout_margin="8dp"
+        android:elevation="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:id="@+id/ivProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/folder"
+            android:src="@drawable/ic_baseline_folder_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/tvCircleProfile"
+            android:layout_width="21dp"
+            android:layout_height="21dp"
+            android:layout_marginTop="32dp"
+            tools:text="S"
+            android:gravity="center_horizontal"
+            android:background="@drawable/circle"
+            app:layout_constraintStart_toStartOf="@+id/tvFolderName"
+            app:layout_constraintTop_toBottomOf="@+id/tvFolderName" />
+
+        <TextView
+            android:id="@+id/tvFolderName"
+            app:setFolderName="@{folder}"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@+id/ivProfile"
+            app:layout_constraintTop_toBottomOf="@+id/ivProfile"
+            tools:text="Android fundamentals" />
+
+        <TextView
+            android:id="@+id/tvUserName"
+            app:setUserName="@{folder}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/tvCircleProfile"
+            app:layout_constraintStart_toEndOf="@+id/tvCircleProfile"
+            tools:text="slscott9" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</layout>

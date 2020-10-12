@@ -111,7 +111,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
             .setPopUpTo(R.id.loginFragment, true) //kills login fragment so when back button is pressed from cemetery list we do not go back to login fragment
             .build()
         findNavController().navigate(
-            LoginFragmentDirections.actionLoginFragmentToHomeActivity(), navOptions
+            LoginFragmentDirections.actionLoginFragmentToHomeFragment(), navOptions
         )
     }
 

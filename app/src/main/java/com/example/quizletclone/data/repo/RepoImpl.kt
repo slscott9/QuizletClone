@@ -3,6 +3,7 @@ package com.example.quizletclone.data.repo
 import android.app.Application
 import com.example.quizletclone.data.local.LocalDataSourceInterface
 import com.example.quizletclone.data.remote.requests.AccountRequest
+import com.example.quizletclone.data.remote.requests.AddFolderRequest
 import com.example.quizletclone.data.remote.service.RemoteDataSourceInterface
 import com.example.quizletclone.other.Resource
 import kotlinx.coroutines.Dispatchers
@@ -43,4 +44,21 @@ class RepoImpl @Inject constructor(
             Resource.error("Couldn't connect to server. Check internet connection", null)
         }
     }
+
+    override suspend fun addFolder(addFolderRequest: AddFolderRequest): Resource<String> = withContext(Dispatchers.IO){
+        try {
+            val response = remoteDataSource.addFolder(addFolderRequest)
+            if(response.isSuccessful && response.body()!!.successful){
+                Resource.success(response.body()?.message)
+            }else{
+                Resource.error(response.body()?.message ?: response.message(), null)
+            }
+        }catch (e: Exception){
+            Resource.error("No internet connection", null)
+        }
+    }
+
+
+
+
 }
