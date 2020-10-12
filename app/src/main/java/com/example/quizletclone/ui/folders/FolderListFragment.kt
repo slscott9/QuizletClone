@@ -55,7 +55,7 @@ class FolderListFragment : Fragment() {
             .setPopUpTo(R.id.folderListFragment, true) //kills login fragment so when back button is pressed from cemetery list we do not go back to login fragment
             .build()
         findNavController().navigate(
-            Foldli.actionLoginFragmentToHomeFragment(), navOptions
+            Folder.actionLoginFragmentToHomeFragment(), navOptions
         )
     }
 
