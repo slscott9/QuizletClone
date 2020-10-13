@@ -7,18 +7,21 @@
 
     <data>
         <variable
-            name="networkSet"
-            type="com.example.quizletclone.data.remote.responses.NetworkSet" />
+            name="domainSet"
+            type="com.example.quizletclone.data.domain.DomainSet" />
         <variable
             name="setListListerer"
             type="com.example.quizletclone.ui.adapters.SetListListener" />
+
     </data>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cvSetItem"
-        android:layout_width="300dp"
-        android:layout_height="103dp"
-        android:layout_marginStart="16dp">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:layout_margin="16dp"
+       >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -27,18 +30,19 @@
 
             <TextView
                 android:id="@+id/tvSetName"
-                app:setName="@{networkSet}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="32dp"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:setName="@{domainSet}" />
 
             <TextView
                 android:id="@+id/tvTermCount"
+                setTermCount="@{domainSet}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="@+id/tvSetName"
@@ -48,17 +52,19 @@
                 android:id="@+id/tvCircleProfile"
                 android:layout_width="21dp"
                 android:layout_height="21dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="32dp"
                 android:background="@drawable/circle"
                 app:layout_constraintStart_toStartOf="@+id/tvTermCount"
                 app:layout_constraintTop_toBottomOf="@+id/tvTermCount" />
 
             <TextView
                 android:id="@+id/tvUserName"
+                setUserName="@{domainSet}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="TextView"
+                android:layout_marginBottom="32dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tvCircleProfile"
                 app:layout_constraintTop_toTopOf="@+id/tvCircleProfile" />
         </androidx.constraintlayout.widget.ConstraintLayout>

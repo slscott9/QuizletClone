@@ -2,6 +2,7 @@ package com.example.quizletclone.ui.search
 
 import android.content.SharedPreferences
 import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -29,6 +30,9 @@ class SearchViewModel @ViewModelInject constructor(
     private val _errorMessage = MutableLiveData<String>()
     val errMessage = _errorMessage
 
+    private val _userName: String? = sharedPreferences.getString(Constants.KEY_LOGGED_IN_EMAIL, Constants.NO_EMAIL).toString()
+    val userName = _userName
+
 
     //offer sends element to all subscribers
     fun setSearchQuery(search: String) {
@@ -36,7 +40,7 @@ class SearchViewModel @ViewModelInject constructor(
         searchChannel.offer(search)
     }
 
-    val searchList = searchChannel.asFlow()
+    private val _searchList = searchChannel.asFlow()
         .map { search ->
 
             repo.getSetsWithSearch(
@@ -48,5 +52,15 @@ class SearchViewModel @ViewModelInject constructor(
                     ).toString()
                 ))
         }
+
+    val searchList = _searchList.asLiveData()
+
+
+
+
+
+
+
+
 
 }

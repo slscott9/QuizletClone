@@ -3,6 +3,7 @@ package com.example.quizletclone.data.remote.service
 import com.example.quizletclone.data.remote.requests.AccountRequest
 import com.example.quizletclone.data.remote.requests.AddFolderRequest
 import com.example.quizletclone.data.remote.requests.SearchRequest
+import com.example.quizletclone.data.remote.requests.SetWithTermsRequest
 import com.example.quizletclone.data.remote.responses.SearchResponse
 import com.example.quizletclone.data.remote.responses.ServerResponse
 import com.example.quizletclone.other.Resource
@@ -33,7 +34,9 @@ class RemoteDataSource @Inject constructor(
         return quizletApi.searchSets(searchRequest)
     }
 
-
+    override suspend fun addNewSet(addSetRequest: SetWithTermsRequest): Response<ServerResponse> {
+        return quizletApi.addNewSet(addSetRequest)
+    }
 
 
 }

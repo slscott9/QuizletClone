@@ -4,6 +4,7 @@ import android.accounts.Account
 import com.example.quizletclone.data.remote.requests.AccountRequest
 import com.example.quizletclone.data.remote.requests.AddFolderRequest
 import com.example.quizletclone.data.remote.requests.SearchRequest
+import com.example.quizletclone.data.remote.requests.SetWithTermsRequest
 import com.example.quizletclone.data.remote.responses.SearchResponse
 import com.example.quizletclone.data.remote.responses.ServerResponse
 import com.example.quizletclone.other.Resource
@@ -19,6 +20,9 @@ interface RemoteDataSourceInterface {
     suspend fun addFolder(addFolderRequest: AddFolderRequest) : Response<ServerResponse>
 
     suspend fun getSetsWithSearch(searchRequest: SearchRequest) : Response<SearchResponse>
+
+    suspend fun addNewSet(addSetRequest: SetWithTermsRequest): Response<ServerResponse>
+
 
 
 }

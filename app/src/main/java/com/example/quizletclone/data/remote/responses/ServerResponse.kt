@@ -38,10 +38,9 @@ data class NetworkFolder(
 )
 
 data class NetworkSet(
+    val setId: Int,
     val folderId: Int,
     val setName : String,
-    val term: String,
-    val answer : String,
     val userEmail: String
 
 )
@@ -58,14 +57,26 @@ fun FolderListResponse.asDomainModel() : List<DomainFolder> {
     }
 }
 
+fun SearchResponse.asDomainModel() : List<DomainSet> {
+    return setList.map{
+        DomainSet(
+            folderId = it.folderId,
+            userEmail = it.userEmail,
+            setName = it.setName,
+            termCount = setList.size,
+            setId = it.setId
+        )
+    }
+}
+
 fun SetListResponse.asDomainModel() : List<DomainSet> {
     return setList.map{
         DomainSet(
             folderId = it.folderId,
             userEmail = it.userEmail,
             setName = it.setName,
-            term = it.term,
-            answer = it.answer
+            termCount = setList.size,
+            setId = it.setId
         )
     }
 }
@@ -89,8 +100,7 @@ fun SetListResponse.asDatabaseModel() : List<Set> {
             folderId = it.folderId,
             userEmail = it.userEmail,
             setName = it.setName,
-            term = it.term,
-            answer = it.answer
+
          )
     }
 }

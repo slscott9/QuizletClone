@@ -5,17 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.viewModels
+import androidx.navigation.navGraphViewModels
 import com.example.quizletclone.R
 import com.example.quizletclone.databinding.FragmentSearchBinding
-import com.example.quizletclone.other.Status
-import com.example.quizletclone.ui.adapters.SearchListAdapter
 import com.example.quizletclone.ui.adapters.SearchViewPagerAdapter
-import com.example.quizletclone.ui.adapters.SetListAdapter
-import com.example.quizletclone.ui.adapters.SetListListener
+import com.example.quizletclone.utils.hiltNavGraphViewModels
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -23,7 +19,7 @@ import timber.log.Timber
 class SearchFragment : Fragment() {
 
     private lateinit var binding: FragmentSearchBinding
-    private val viewModel: SearchViewModel by viewModels()
+    private val viewModel by hiltNavGraphViewModels<SearchViewModel>(R.id.navigation2)
 
 
     override fun onCreateView(

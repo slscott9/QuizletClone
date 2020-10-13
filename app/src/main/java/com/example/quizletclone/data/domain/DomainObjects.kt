@@ -9,9 +9,9 @@ data class DomainFolder(
 )
 
 data class DomainSet(
+    val setId: Int,
     val folderId: Int,
     val userEmail: String,
     val setName: String,
-    val term: String,
-    val answer: String
+    val termCount: Int
 )

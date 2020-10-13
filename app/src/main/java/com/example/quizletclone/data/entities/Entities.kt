@@ -32,8 +32,6 @@ data class Set(
     val id: Int = 0,
     val folderId: Int,
     val setName : String,
-    val term: String,
-    val answer : String,
     val userEmail: String
 )
 
@@ -64,8 +62,8 @@ fun SetContainer.asNetworkModels() : List<NetworkSet> {
             folderId = it.folderId,
             userEmail = it.userEmail,
             setName = it.setName,
-            term = it.term,
-            answer = it.answer
+            setId = it.id
+
         )
 
     }

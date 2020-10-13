@@ -6,14 +6,15 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quizletclone.data.domain.DomainFolder
+import com.example.quizletclone.data.domain.DomainSet
 import com.example.quizletclone.data.remote.responses.NetworkSet
 import com.example.quizletclone.databinding.SetItemBinding
 
-class SetListAdapter (val clickListener: SetListListener): ListAdapter<NetworkSet, SetListAdapter.ViewHolder>(SetListDiffUtilCallback()){
+class SetListAdapter (val clickListener: SetListListener): ListAdapter<DomainSet, SetListAdapter.ViewHolder>(SetListDiffUtilCallback()){
     class ViewHolder(val binding : SetItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: NetworkSet, clickListener: SetListListener){
-            binding.networkSet = item
+        fun bind(item: DomainSet, clickListener: SetListListener){
+            binding.domainSet = item
             binding.setListListerer = clickListener
             binding.executePendingBindings()
 
@@ -34,17 +35,17 @@ class SetListAdapter (val clickListener: SetListListener): ListAdapter<NetworkSe
 }
 
 class SetListListener(val clickListener: (id: Int) -> Unit){
-    fun onClick(folder: NetworkSet) {
+    fun onClick(folder: DomainSet) {
         clickListener(folder.folderId)
     }
 }
 
-class SetListDiffUtilCallback : DiffUtil.ItemCallback<NetworkSet>() {
-    override fun areItemsTheSame(oldItem: NetworkSet, newItem: NetworkSet): Boolean {
+class SetListDiffUtilCallback : DiffUtil.ItemCallback<DomainSet>() {
+    override fun areItemsTheSame(oldItem: DomainSet, newItem: DomainSet): Boolean {
         return oldItem.folderId == newItem.folderId
     }
 
-    override fun areContentsTheSame(oldItem: NetworkSet, newItem: NetworkSet): Boolean {
+    override fun areContentsTheSame(oldItem: DomainSet, newItem: DomainSet): Boolean {
         return oldItem == newItem
     }
 

@@ -52,9 +52,6 @@
                 android:id="@+id/action_homeFragment_to_searchFragment"
                 app:destination="@id/searchFragment" />
             <action
-                android:id="@+id/action_homeFragment_to_setListFragment"
-                app:destination="@id/setListFragment" />
-            <action
                 android:id="@+id/action_homeFragment_to_profileFragment"
                 app:destination="@id/profileFragment" />
             <action
@@ -63,6 +60,9 @@
             <action
                 android:id="@+id/action_homeFragment_to_folderListFragment"
                 app:destination="@id/folderListFragment" />
+            <action
+                android:id="@+id/action_homeFragment_to_setListFragment"
+                app:destination="@id/setListFragment" />
         </fragment>
         <fragment
             android:id="@+id/folderListFragment"
@@ -87,7 +87,11 @@
         <fragment
             android:id="@+id/addSetFragment"
             android:name="com.example.quizletclone.ui.create.AddSetFragment"
-            android:label="AddSetFragment" />
+            android:label="AddSetFragment" >
+            <action
+                android:id="@+id/action_addSetFragment_to_setDetailFragment"
+                app:destination="@id/setDetailFragment" />
+        </fragment>
         <fragment
             android:id="@+id/folderDetailFragment"
             android:name="com.example.quizletclone.ui.folders.FolderDetailFragment"
@@ -98,11 +102,6 @@
                 app:destination="@id/folderListFragment" />
         </fragment>
         <fragment
-            android:id="@+id/setListFragment"
-            android:name="com.example.quizletclone.ui.sets.SetListFragment"
-            android:label="fragment_set_list"
-            tools:layout="@layout/fragment_set_list" />
-        <fragment
             android:id="@+id/profileFragment"
             android:name="com.example.quizletclone.ui.profile.ProfileFragment"
             android:label="fragment_profile"
@@ -110,6 +109,19 @@
             <action
                 android:id="@+id/action_profileFragment_to_homeLoginFragment"
                 app:destination="@id/navigation" />
+        </fragment>
+        <fragment
+            android:id="@+id/setListFragment"
+            android:name="com.example.quizletclone.ui.sets.SetListFragment"
+            android:label="SetListFragment" />
+        <fragment
+            android:id="@+id/setDetailFragment"
+            android:name="com.example.quizletclone.ui.sets.SetDetailFragment"
+            android:label="fragment_set_detail"
+            tools:layout="@layout/fragment_set_detail" >
+            <action
+                android:id="@+id/action_setDetailFragment_to_homeFragment"
+                app:destination="@id/homeFragment" />
         </fragment>
     </navigation>
 </navigation>

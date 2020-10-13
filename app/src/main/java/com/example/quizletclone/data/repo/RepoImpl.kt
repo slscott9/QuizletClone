@@ -1,12 +1,16 @@
 package com.example.quizletclone.data.repo
 
 import android.app.Application
+import com.example.quizletclone.data.domain.DomainSet
 import com.example.quizletclone.data.local.LocalDataSourceInterface
 import com.example.quizletclone.data.remote.requests.AccountRequest
 import com.example.quizletclone.data.remote.requests.AddFolderRequest
 import com.example.quizletclone.data.remote.requests.SearchRequest
+import com.example.quizletclone.data.remote.requests.SetWithTermsRequest
 import com.example.quizletclone.data.remote.responses.NetworkSet
 import com.example.quizletclone.data.remote.responses.SearchResponse
+import com.example.quizletclone.data.remote.responses.ServerResponse
+import com.example.quizletclone.data.remote.responses.asDomainModel
 import com.example.quizletclone.data.remote.service.RemoteDataSourceInterface
 import com.example.quizletclone.other.Resource
 import kotlinx.coroutines.Dispatchers
@@ -65,7 +69,7 @@ class RepoImpl @Inject constructor(
         }
     }
 
-    override suspend fun getSetsWithSearch(searchRequest: SearchRequest): Resource<List<NetworkSet>> = withContext(Dispatchers.IO){
+    override suspend fun getSetsWithSearch(searchRequest: SearchRequest): Resource<List<DomainSet>> = withContext(Dispatchers.IO){
 
         Timber.i("In getSetsWithSearch repo method")
 
@@ -73,7 +77,20 @@ class RepoImpl @Inject constructor(
             val response = remoteDataSource.getSetsWithSearch(searchRequest)
             if(response.isSuccessful && response.body()!!.successful){
                 Timber.i(response.body()!!.setList.toString())
-                Resource.success(response.body()!!.setList)
+                Resource.success(response.body()!!.asDomainModel())
+            }else{
+                Resource.error(response.body()?.message ?: response.message(), null)
+            }
+        }catch (e : Exception){
+            Resource.error("No internet connection", null)
+        }
+    }
+
+    override suspend fun addNewSet(addSetRequest: SetWithTermsRequest): Resource<String> = withContext(Dispatchers.IO) {
+        try {
+            val response = remoteDataSource.addNewSet(addSetRequest)
+            if(response.isSuccessful && response.body()!!.successful){
+                Resource.success(response.body()?.message)
             }else{
                 Resource.error(response.body()?.message ?: response.message(), null)
             }

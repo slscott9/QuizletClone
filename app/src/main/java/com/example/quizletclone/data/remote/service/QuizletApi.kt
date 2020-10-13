@@ -1,9 +1,7 @@
 package com.example.quizletclone.data.remote.service
 
 import com.example.quizletclone.data.entities.Set
-import com.example.quizletclone.data.remote.requests.AccountRequest
-import com.example.quizletclone.data.remote.requests.AddFolderRequest
-import com.example.quizletclone.data.remote.requests.SearchRequest
+import com.example.quizletclone.data.remote.requests.*
 import com.example.quizletclone.data.remote.responses.FolderListResponse
 import com.example.quizletclone.data.remote.responses.NetworkSet
 import com.example.quizletclone.data.remote.responses.SearchResponse
@@ -32,5 +30,10 @@ interface QuizletApi {
 
     @POST("/getSetsWithQuery")
     suspend fun searchSets(@Body searchSetRequest: SearchRequest) : Response<SearchResponse>
+
+    @POST("/addSet")
+    suspend fun addNewSet(@Body addSetRequest: SetWithTermsRequest): Response<ServerResponse>
+
+
 }
 
