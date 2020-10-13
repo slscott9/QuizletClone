@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavOptions
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.quizletclone.BaseFragment
 import com.example.quizletclone.R
@@ -51,7 +52,9 @@ class HomeLoginFragment : BaseFragment(R.layout.fragment_home_login) {
 
         if(isLoggedIn()){
             authenticateAPI(currentEmail ?: "", currentPassword ?: "")
-            redirectLogin()
+            findNavController().navigate(
+                R.id.navigation2
+            )
         }
 
 
@@ -82,14 +85,7 @@ class HomeLoginFragment : BaseFragment(R.layout.fragment_home_login) {
         return currentEmail != Constants.NO_EMAIL && currentPassword != Constants.NO_PASSWORD
     }
 
-    private fun redirectLogin() {
-        val navOptions = NavOptions.Builder()
-            .setPopUpTo(R.id.loginFragment, true) //kills login fragment so when back button is pressed from cemetery list we do not go back to login fragment
-            .build()
-        findNavController().navigate(
-            HomeLoginFragmentDirections.actionHomeLoginFragmentToHomeFragment(), navOptions
-        )
-    }
+
 
 
 

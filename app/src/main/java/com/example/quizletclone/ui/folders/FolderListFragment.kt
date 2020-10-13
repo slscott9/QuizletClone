@@ -5,19 +5,24 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ListAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.quizletclone.R
 import com.example.quizletclone.databinding.FragmentFolderBinding
+import com.example.quizletclone.ui.adapters.FolderListAdapter
+import com.example.quizletclone.ui.adapters.FolderListListener
 import com.example.quizletclone.ui.create.CreateFolderDialogFragment
 import com.example.quizletclone.ui.login.LoginFragmentDirections
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class FolderListFragment : Fragment() {
 
     private lateinit var binding: FragmentFolderBinding
+    private lateinit var folderListAdapter: FolderListAdapter
 
 
     override fun onCreateView(
@@ -35,14 +40,20 @@ class FolderListFragment : Fragment() {
                     createFolderDialogFragment.show(parentFragmentManager, createFolderDialogFragment.tag)
                     true
                 }
+
                 else -> false
             }
         }
 
 
         binding.folderActivityToolbar.setNavigationOnClickListener {
-
+            redirectToHomeFragment()
         }
+
+        folderListAdapter = FolderListAdapter(FolderListListener {
+            findNavController().navigate(FolderListFragmentDirections.actionFolderListFragmentToFolderDetailFragment())
+        })
+
 
         return binding.root
 
@@ -50,12 +61,12 @@ class FolderListFragment : Fragment() {
 
     }
 
-    private fun redirectLogin() {
+    private fun redirectToHomeFragment() {
         val navOptions = NavOptions.Builder()
             .setPopUpTo(R.id.folderListFragment, true) //kills login fragment so when back button is pressed from cemetery list we do not go back to login fragment
             .build()
         findNavController().navigate(
-            Folder.actionLoginFragmentToHomeFragment(), navOptions
+            FolderListFragmentDirections.actionFolderListFragmentToHomeFragment(), navOptions
         )
     }
 

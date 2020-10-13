@@ -5,11 +5,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     >
 
+    <data>
+        <variable
+            name="networkSet"
+            type="com.example.quizletclone.data.remote.responses.NetworkSet" />
+        <variable
+            name="setListListerer"
+            type="com.example.quizletclone.ui.adapters.SetListListener" />
+    </data>
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cvSetItem"
         android:layout_width="300dp"
         android:layout_height="103dp"
-        android:layout_marginLeft="16dp">
+        android:layout_marginStart="16dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -18,11 +27,11 @@
 
             <TextView
                 android:id="@+id/tvSetName"
+                app:setName="@{networkSet}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="CS-3332 Sofwate engineering final"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +41,6 @@
                 android:id="@+id/tvTermCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="108 terms"
                 app:layout_constraintStart_toStartOf="@+id/tvSetName"
                 app:layout_constraintTop_toBottomOf="@+id/tvSetName" />
 

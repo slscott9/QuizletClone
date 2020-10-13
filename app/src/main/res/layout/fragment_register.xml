@@ -117,7 +117,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/registerPasswordInputLayout" />
 
             <ProgressBar
-                android:id="@+id/loginProgressBar"
+                android:id="@+id/registerProgressBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
@@ -136,6 +136,8 @@
             app:layout_constraintStart_toStartOf="@+id/googleSignInButton"
             app:layout_constraintTop_toBottomOf="@+id/googleSignInButton"
            />
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

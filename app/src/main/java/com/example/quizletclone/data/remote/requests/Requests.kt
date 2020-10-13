@@ -14,3 +14,8 @@ data class AddFolderRequest(
 
 )
 
+data class SearchRequest(
+    val userEmail: String,
+    val searchParam: String
+)
+

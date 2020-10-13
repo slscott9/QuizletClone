@@ -4,10 +4,17 @@ import android.app.Application
 import com.example.quizletclone.data.local.LocalDataSourceInterface
 import com.example.quizletclone.data.remote.requests.AccountRequest
 import com.example.quizletclone.data.remote.requests.AddFolderRequest
+import com.example.quizletclone.data.remote.requests.SearchRequest
+import com.example.quizletclone.data.remote.responses.NetworkSet
+import com.example.quizletclone.data.remote.responses.SearchResponse
 import com.example.quizletclone.data.remote.service.RemoteDataSourceInterface
 import com.example.quizletclone.other.Resource
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.withContext
+import retrofit2.Response
+import timber.log.Timber
 import java.lang.Exception
 import javax.inject.Inject
 
@@ -58,7 +65,20 @@ class RepoImpl @Inject constructor(
         }
     }
 
+    override suspend fun getSetsWithSearch(searchRequest: SearchRequest): Resource<List<NetworkSet>> = withContext(Dispatchers.IO){
 
+        Timber.i("In getSetsWithSearch repo method")
 
-
+        try {
+            val response = remoteDataSource.getSetsWithSearch(searchRequest)
+            if(response.isSuccessful && response.body()!!.successful){
+                Timber.i(response.body()!!.setList.toString())
+                Resource.success(response.body()!!.setList)
+            }else{
+                Resource.error(response.body()?.message ?: response.message(), null)
+            }
+        }catch (e : Exception){
+            Resource.error("No internet connection", null)
+        }
+    }
 }

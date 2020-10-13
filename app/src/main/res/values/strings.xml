@@ -30,4 +30,7 @@
     <string name="add_folder">add folder</string>
     <string name="folder">folder</string>
     <string name="folder_name_error_message">FOLDER NAME IS REQUIRED</string>
+    <string name="sets_tab">SETS</string>
+    <string name="classes_tab">CLASSES</string>
+    <string name="users_TAB">USERS</string>
 </resources>

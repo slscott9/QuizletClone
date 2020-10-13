@@ -18,6 +18,11 @@ data class FolderListResponse(
     val folderList: List<NetworkFolder>
 )
 
+data class SearchResponse(
+    val successful: Boolean,
+    val message: String,
+    val setList: List<NetworkSet>
+)
 
 
 data class SetListResponse(
