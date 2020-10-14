@@ -13,5 +13,13 @@ data class DomainSet(
     val folderId: Int,
     val userEmail: String,
     val setName: String,
-    val termCount: Int
+    val termCount: Int = 0
+)
+
+
+data class DomainTerm(
+    val id: Int,
+    val setId: Int,
+    val term: String,
+    val answer: String
 )

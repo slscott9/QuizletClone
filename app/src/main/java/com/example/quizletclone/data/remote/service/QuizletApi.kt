@@ -2,10 +2,7 @@ package com.example.quizletclone.data.remote.service
 
 import com.example.quizletclone.data.entities.Set
 import com.example.quizletclone.data.remote.requests.*
-import com.example.quizletclone.data.remote.responses.FolderListResponse
-import com.example.quizletclone.data.remote.responses.NetworkSet
-import com.example.quizletclone.data.remote.responses.SearchResponse
-import com.example.quizletclone.data.remote.responses.ServerResponse
+import com.example.quizletclone.data.remote.responses.*
 import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
 import retrofit2.http.Body
@@ -32,7 +29,10 @@ interface QuizletApi {
     suspend fun searchSets(@Body searchSetRequest: SearchRequest) : Response<SearchResponse>
 
     @POST("/addSet")
-    suspend fun addNewSet(@Body addSetRequest: SetWithTermsRequest): Response<ServerResponse>
+    suspend fun addNewSet(@Body addSetRequest: SetWithTermsRequest): Response<AddSetResponse>
+
+    @POST("/getSetWithId")
+    suspend fun getSetTermsWithId(@Body getSetWithTermsRequest: GetSetWithTermsRequest) : Response<SetWithTermsResponse>
 
 
 }

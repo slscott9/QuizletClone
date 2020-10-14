@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.quizletclone.data.remote.requests.SetRequest
 import com.example.quizletclone.data.remote.requests.SetWithTermsRequest
+import com.example.quizletclone.data.remote.responses.AddSetResponse
 import com.example.quizletclone.data.repo.RepoInterface
 import com.example.quizletclone.other.Constants
 import com.example.quizletclone.other.Resource
@@ -19,7 +20,7 @@ class AddSetViewModel @ViewModelInject constructor(
 ) : ViewModel(){
 
 
-    private val _addSetStatus = MutableLiveData<Resource<String>>()
+    private val _addSetStatus = MutableLiveData<Resource<AddSetResponse>>()
     val addSetStatus = _addSetStatus
 
     fun sendNewSetToNetwork(setName: String, termList: List<AddSetFragment.Term>){

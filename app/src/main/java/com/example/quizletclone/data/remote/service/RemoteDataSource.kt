@@ -1,11 +1,10 @@
 package com.example.quizletclone.data.remote.service
 
-import com.example.quizletclone.data.remote.requests.AccountRequest
-import com.example.quizletclone.data.remote.requests.AddFolderRequest
-import com.example.quizletclone.data.remote.requests.SearchRequest
-import com.example.quizletclone.data.remote.requests.SetWithTermsRequest
+import com.example.quizletclone.data.remote.requests.*
+import com.example.quizletclone.data.remote.responses.AddSetResponse
 import com.example.quizletclone.data.remote.responses.SearchResponse
 import com.example.quizletclone.data.remote.responses.ServerResponse
+import com.example.quizletclone.data.remote.responses.SetWithTermsResponse
 import com.example.quizletclone.other.Resource
 import retrofit2.Response
 import java.util.concurrent.Flow
@@ -34,9 +33,11 @@ class RemoteDataSource @Inject constructor(
         return quizletApi.searchSets(searchRequest)
     }
 
-    override suspend fun addNewSet(addSetRequest: SetWithTermsRequest): Response<ServerResponse> {
+    override suspend fun addNewSet(addSetRequest: SetWithTermsRequest): Response<AddSetResponse> {
         return quizletApi.addNewSet(addSetRequest)
     }
 
-
+    override suspend fun getSetTermsWithId(setId: Int): Response<SetWithTermsResponse> {
+        return quizletApi.getSetTermsWithId(GetSetWithTermsRequest(setId))
+    }
 }

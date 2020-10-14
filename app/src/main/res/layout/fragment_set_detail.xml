@@ -6,10 +6,13 @@
 
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:fitsSystemWindows="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
 
         <com.google.android.material.appbar.MaterialToolbar
@@ -23,6 +26,18 @@
 
 
         </com.google.android.material.appbar.MaterialToolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+
+
+        </androidx.core.widget.NestedScrollView>
 
 
 

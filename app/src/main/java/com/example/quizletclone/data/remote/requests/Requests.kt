@@ -27,6 +27,10 @@ data class SetWithTermsRequest(
 
 )
 
+data class GetSetWithTermsRequest(
+    val setId: Int
+)
+
 data class SetRequest(
     val userEmail: String,
     val folderId: Int?,

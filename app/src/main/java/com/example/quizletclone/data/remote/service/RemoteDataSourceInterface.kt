@@ -5,8 +5,10 @@ import com.example.quizletclone.data.remote.requests.AccountRequest
 import com.example.quizletclone.data.remote.requests.AddFolderRequest
 import com.example.quizletclone.data.remote.requests.SearchRequest
 import com.example.quizletclone.data.remote.requests.SetWithTermsRequest
+import com.example.quizletclone.data.remote.responses.AddSetResponse
 import com.example.quizletclone.data.remote.responses.SearchResponse
 import com.example.quizletclone.data.remote.responses.ServerResponse
+import com.example.quizletclone.data.remote.responses.SetWithTermsResponse
 import com.example.quizletclone.other.Resource
 import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
@@ -21,7 +23,9 @@ interface RemoteDataSourceInterface {
 
     suspend fun getSetsWithSearch(searchRequest: SearchRequest) : Response<SearchResponse>
 
-    suspend fun addNewSet(addSetRequest: SetWithTermsRequest): Response<ServerResponse>
+    suspend fun addNewSet(addSetRequest: SetWithTermsRequest): Response<AddSetResponse>
+
+    suspend fun getSetTermsWithId(setId: Int) : Response<SetWithTermsResponse>
 
 
 

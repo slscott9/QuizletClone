@@ -5,7 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.core.view.forEach
+import androidx.core.view.size
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavOptions
@@ -24,6 +27,7 @@ class AddSetFragment : Fragment() {
     private val viewModel: AddSetViewModel by viewModels()
     private val termList = ArrayList<Term>()
     private val termLayoutList = ArrayList<View>()
+    private lateinit var parentLayout: LinearLayout
 
 
     override fun onCreateView(
@@ -42,6 +46,9 @@ class AddSetFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        parentLayout = binding.termDefContainer
+        termLayoutList.add(parentLayout.term_definition_layout) //add the initial layout that is already there from the include tag. if not it will be skipped
+
         binding.fabAddSetTerm.setOnClickListener {
             addTermDef()
 
@@ -49,12 +56,11 @@ class AddSetFragment : Fragment() {
         binding.toolBar.setOnMenuItemClickListener {
             when(it.itemId){
                 R.id.save_set_item -> {
+
                     getTerms()
-                    val setName = binding.etSetTitle.text.toString()
-                    Timber.i(termList.toString())
-                    Timber.i(termLayoutList.size.toString())
+                    Timber.i("Term layout list size is ${termLayoutList.size}")
                     viewModel.sendNewSetToNetwork(
-                        setName = setName,
+                        setName = binding.etSetTitle.text.toString(),
                         termList
                     )
 
@@ -69,14 +75,14 @@ class AddSetFragment : Fragment() {
             when(it.status){
                 Status.SUCCESS -> {
                     binding.addSetProgressBar.visibility = View.GONE
-                    redirectToSetDetail()
+                    redirectToSetDetail(it.data?.setId ?: -1)
 
                 }
                 Status.LOADING -> {
                     binding.addSetProgressBar.visibility = View.VISIBLE
                 }
                 Status.ERROR -> {
-                    Toast.makeText(requireActivity(), "Failed add set", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireActivity(), "Failed to add set", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -84,20 +90,19 @@ class AddSetFragment : Fragment() {
     }
 
     private fun addTermDef() {
-        val parentLayout = binding.termDefContainer
         val childLayout = layoutInflater.inflate(R.layout.term_definition_item, parentLayout, false)
-        termLayoutList.add(childLayout)
+        termLayoutList.add(childLayout) //add card view with term and definition layout to list
+        Timber.i(termLayoutList.size.toString())
         parentLayout.addView(childLayout)
-
         binding.scrollView.fullScroll(View.FOCUS_DOWN)
 
     }
 
-    private fun getTerms() {
-        termLayoutList.forEach {
+    private fun getTerms() { //iterate through list of card views with term and def, extract each input if not blank
 
-            if(!it.etTermInput.text.isNullOrEmpty() &&
-                !it.etDefinitionInput.text.isNullOrEmpty()){
+        termLayoutList.forEach {
+            if(!it.etTermInput.text.isNullOrBlank() &&
+                !it.etDefinitionInput.text.isNullOrBlank()){
 
                 termList.add(Term(
                     it.etTermInput.text.toString(),
@@ -107,11 +112,11 @@ class AddSetFragment : Fragment() {
         }
     }
 
-    private fun redirectToSetDetail() {
+    private fun redirectToSetDetail(setId: Int) {
         val navOptions = NavOptions.Builder()
             .setPopUpTo(R.id.addSetFragment, true)
             .build()
-        findNavController().navigate(AddSetFragmentDirections.actionAddSetFragmentToSetDetailFragment())
+        findNavController().navigate(AddSetFragmentDirections.actionAddSetFragmentToSetDetailFragment(setId), navOptions)
     }
 
     data class Term(

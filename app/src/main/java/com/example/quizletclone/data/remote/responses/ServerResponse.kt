@@ -3,8 +3,10 @@ package com.example.quizletclone.data.remote.responses
 import android.icu.text.CaseMap
 import com.example.quizletclone.data.domain.DomainFolder
 import com.example.quizletclone.data.domain.DomainSet
+import com.example.quizletclone.data.domain.DomainTerm
 import com.example.quizletclone.data.entities.Folder
 import com.example.quizletclone.data.entities.Set
+import com.example.quizletclone.ui.create.AddSetFragment
 
 
 //Json will be deserialized into these classes from the network
@@ -22,6 +24,47 @@ data class SearchResponse(
     val successful: Boolean,
     val message: String,
     val setList: List<NetworkSet>
+)
+
+//Response from server for an add set request
+data class AddSetResponse(
+    val setId: Int?,
+    val successful: Boolean,
+    val message: String
+)
+
+data class SetWithTermsResponse(
+    val set: NetworkSet?,
+    val termList : List<NetworkTerm?>,
+    val successful: Boolean,
+    val message: String
+)
+
+fun SetWithTermsResponse.asDomainTerms() : List<DomainTerm>{
+    return termList.map {
+        DomainTerm(
+            id = it!!.id,
+            term = it.term,
+            answer = it.answer,
+            setId = it.setId
+        )
+    }
+}
+
+fun NetworkSet.asDomainModel() : DomainSet {
+    return DomainSet(
+        setId = setId,
+        folderId = folderId,
+        userEmail = userEmail,
+        setName = setName
+    )
+}
+
+data class NetworkTerm(
+    val id: Int,
+    val setId: Int,
+    val term: String,
+    val answer: String
 )
 
 
