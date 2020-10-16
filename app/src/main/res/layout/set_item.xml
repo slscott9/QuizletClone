@@ -8,7 +8,7 @@
     <data>
         <variable
             name="domainSet"
-            type="com.example.quizletclone.data.domain.DomainSet" />
+            type="com.example.quizletclone.data.dto.DomainSet" />
         <variable
             name="setListListerer"
             type="com.example.quizletclone.ui.adapters.SetListListener" />

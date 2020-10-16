@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.quizletclone.data.domain.DomainFolder
+import com.example.quizletclone.data.dto.DomainFolder
 import com.example.quizletclone.databinding.FolderListItemBinding
 
 class FolderListAdapter (val clickListener: FolderListListener): ListAdapter<DomainFolder, FolderListAdapter.ViewHolder>(FolderDiffUtilCallback()){
@@ -32,7 +32,7 @@ class FolderListAdapter (val clickListener: FolderListListener): ListAdapter<Dom
     }
 }
 
-class FolderListListener(val clickListener: (id: Int) -> Unit){
+class FolderListListener(val clickListener: (id: Long) -> Unit){
     fun onClick(folder: DomainFolder) {
         clickListener(folder.folderId)
     }

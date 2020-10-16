@@ -7,7 +7,7 @@
 
         <variable
             name="folder"
-            type="com.example.quizletclone.data.domain.DomainFolder" />
+            type="com.example.quizletclone.data.dto.DomainFolder" />
         <variable
             name="clickListener"
             type="com.example.quizletclone.ui.adapters.FolderListListener" />

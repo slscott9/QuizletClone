@@ -6,8 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
-import com.example.quizletclone.data.remote.requests.SearchRequest
-import com.example.quizletclone.data.remote.responses.NetworkSet
+
 import com.example.quizletclone.data.repo.RepoInterface
 import com.example.quizletclone.other.Constants
 import com.example.quizletclone.other.Resource
@@ -40,20 +39,20 @@ class SearchViewModel @ViewModelInject constructor(
         searchChannel.offer(search)
     }
 
-    private val _searchList = searchChannel.asFlow()
-        .map { search ->
-
-            repo.getSetsWithSearch(
-                SearchRequest(
-                    searchParam = search,
-                    userEmail = sharedPreferences.getString(
-                        Constants.KEY_LOGGED_IN_EMAIL,
-                        Constants.NO_EMAIL
-                    ).toString()
-                ))
-        }
-
-    val searchList = _searchList.asLiveData()
+//    private val _searchList = searchChannel.asFlow()
+//        .map { search ->
+//
+//            repo.getSetsWithSearch(
+//                SearchRequest(
+//                    searchParam = search,
+//                    userEmail = sharedPreferences.getString(
+//                        Constants.KEY_LOGGED_IN_EMAIL,
+//                        Constants.NO_EMAIL
+//                    ).toString()
+//                ))
+//        }
+//
+//    val searchList = _searchList.asLiveData()
 
 
 

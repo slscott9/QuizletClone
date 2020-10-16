@@ -14,6 +14,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.quizletclone.R
+import com.example.quizletclone.data.dto.NetworkSet
 import com.example.quizletclone.databinding.FragmentAddSetBinding
 import com.example.quizletclone.other.Status
 import dagger.hilt.android.AndroidEntryPoint
@@ -57,14 +58,15 @@ class AddSetFragment : Fragment() {
             when(it.itemId){
                 R.id.save_set_item -> {
 
-                    getTerms()
-                    Timber.i("Term layout list size is ${termLayoutList.size}")
-                    viewModel.sendNewSetToNetwork(
-                        setName = binding.etSetTitle.text.toString(),
-                        termList
-                    )
-
-
+                    if(binding.etSetTitle.text.isNullOrBlank()){
+                        Toast.makeText(requireActivity(), "Please enter all fields", Toast.LENGTH_SHORT).show()
+                    }else{
+                        getTerms()
+                        viewModel.insertSet(
+                            binding.etSetTitle.text.toString(),
+                            termList = termList
+                        )
+                    }
                     true
                 }
                 else -> false
@@ -75,7 +77,7 @@ class AddSetFragment : Fragment() {
             when(it.status){
                 Status.SUCCESS -> {
                     binding.addSetProgressBar.visibility = View.GONE
-                    redirectToSetDetail(it.data?.setId ?: -1)
+                    redirectToSetDetail(it.data?.setId!!)
 
                 }
                 Status.LOADING -> {
@@ -112,7 +114,7 @@ class AddSetFragment : Fragment() {
         }
     }
 
-    private fun redirectToSetDetail(setId: Int) {
+    private fun redirectToSetDetail(setId: Long) {
         val navOptions = NavOptions.Builder()
             .setPopUpTo(R.id.addSetFragment, true)
             .build()

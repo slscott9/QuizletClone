@@ -2,9 +2,8 @@ package com.example.quizletclone.utils
 
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import com.example.quizletclone.data.domain.DomainFolder
-import com.example.quizletclone.data.domain.DomainSet
-import com.example.quizletclone.data.remote.responses.NetworkSet
+import com.example.quizletclone.data.dto.DomainFolder
+import com.example.quizletclone.data.dto.DomainSet
 
 @BindingAdapter("setFolderName")
 fun TextView.setFolderName(item: DomainFolder?){

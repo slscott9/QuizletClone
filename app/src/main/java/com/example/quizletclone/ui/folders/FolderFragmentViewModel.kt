@@ -7,7 +7,6 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.quizletclone.data.remote.requests.AddFolderRequest
 import com.example.quizletclone.data.repo.RepoInterface
 import com.example.quizletclone.other.Constants
 import com.example.quizletclone.other.Resource
@@ -24,15 +23,15 @@ class FolderFragmentViewModel @ViewModelInject constructor(
     private val _folderSentStatus = MutableLiveData<Resource<String>>()
     val folderSentStatus: LiveData<Resource<String>> = _folderSentStatus
 
-    fun sendNewFolderToNetwork(folderName: String, description: String?) {
-
-        GlobalScope.launch {
-            repo.addFolder(AddFolderRequest(
-                folderName,
-                sharedPreferences.getString(Constants.KEY_LOGGED_IN_EMAIL, Constants.NO_EMAIL)?: Constants.NO_EMAIL,
-                description
-                ))
-        }
-
-    }
+//    fun sendNewFolderToNetwork(folderName: String, description: String?) {
+//
+//        GlobalScope.launch {
+//            repo.addFolder(AddFolderRequest(
+//                folderName,
+//                sharedPreferences.getString(Constants.KEY_LOGGED_IN_EMAIL, Constants.NO_EMAIL)?: Constants.NO_EMAIL,
+//                description
+//                ))
+//        }
+//
+//    }
 }

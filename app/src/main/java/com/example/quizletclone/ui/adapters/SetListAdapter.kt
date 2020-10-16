@@ -5,9 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.quizletclone.data.domain.DomainFolder
-import com.example.quizletclone.data.domain.DomainSet
-import com.example.quizletclone.data.remote.responses.NetworkSet
+import com.example.quizletclone.data.dto.DomainSet
 import com.example.quizletclone.databinding.SetItemBinding
 
 class SetListAdapter (val clickListener: SetListListener): ListAdapter<DomainSet, SetListAdapter.ViewHolder>(SetListDiffUtilCallback()){
@@ -34,9 +32,9 @@ class SetListAdapter (val clickListener: SetListListener): ListAdapter<DomainSet
     }
 }
 
-class SetListListener(val clickListener: (id: Int) -> Unit){
-    fun onClick(folder: DomainSet) {
-        clickListener(folder.folderId)
+class SetListListener(val clickListener: (id: Long) -> Unit){
+    fun onClick(set: DomainSet) {
+        clickListener(set.setId)
     }
 }
 

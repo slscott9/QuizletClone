@@ -50,18 +50,18 @@ class CreateFolderDialogFragment : DialogFragment() {
             dismiss()
         }
 
-        tvOK.setOnClickListener {
-            if(binding.etFolderName.text.isNullOrEmpty()){
-                binding.tvLayoutFolderName.error = getString(R.string.folder_name_error_message)
-            }else{
-                viewModel.sendNewFolderToNetwork(
-                        binding.etFolderName.text.toString(),
-                        binding.etDescription.text.toString()
-                    )
-
-                dismiss()
-            }
-        }
+//        tvOK.setOnClickListener {
+//            if(binding.etFolderName.text.isNullOrEmpty()){
+//                binding.tvLayoutFolderName.error = getString(R.string.folder_name_error_message)
+//            }else{
+//                viewModel.sendNewFolderToNetwork(
+//                        binding.etFolderName.text.toString(),
+//                        binding.etDescription.text.toString()
+//                    )
+//
+//                dismiss()
+//            }
+//        }
 
 
 

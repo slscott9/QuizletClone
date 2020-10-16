@@ -47,38 +47,38 @@ class SetListFragment : Fragment() {
     }
 
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+//        super.onViewCreated(view, savedInstanceState)
+//
+//        Timber.i("in onViewcreated SetsFragment")
+//        binding.searchResultSetListRv.adapter = setListAdapter
+//
+//
+//        viewModel.searchList.observe(viewLifecycleOwner) {
+//            when (it.status) {
+//                Status.SUCCESS -> {
+//                    Timber.i("in Status success SetsFragment")
+//
+//                    binding.setSearchProgressBar.visibility = View.GONE
+//                    it.data?.let { setList ->
+//                        Timber.i(setList.toString())
+//                        setListAdapter.submitList(setList)
+//                    }
+//                }
+//                Status.ERROR -> {
+//                    Timber.i("in Status success SetsFragment")
+//
+//                    binding.setSearchProgressBar.visibility = View.GONE
+//                    Toast.makeText(requireActivity(), it.message, Toast.LENGTH_SHORT).show()
+//                }
+//                Status.LOADING -> {
+//                    binding.setSearchProgressBar.visibility = View.VISIBLE
+//                }
+//            }
+//        }
 
-        Timber.i("in onViewcreated SetsFragment")
-        binding.searchResultSetListRv.adapter = setListAdapter
-
-
-        viewModel.searchList.observe(viewLifecycleOwner) {
-            when (it.status) {
-                Status.SUCCESS -> {
-                    Timber.i("in Status success SetsFragment")
-
-                    binding.setSearchProgressBar.visibility = View.GONE
-                    it.data?.let { setList ->
-                        Timber.i(setList.toString())
-                        setListAdapter.submitList(setList)
-                    }
-                }
-                Status.ERROR -> {
-                    Timber.i("in Status success SetsFragment")
-
-                    binding.setSearchProgressBar.visibility = View.GONE
-                    Toast.makeText(requireActivity(), it.message, Toast.LENGTH_SHORT).show()
-                }
-                Status.LOADING -> {
-                    binding.setSearchProgressBar.visibility = View.VISIBLE
-                }
-            }
-        }
-
-        binding.searchResultSetListRv.adapter = setListAdapter
-    }
+//        binding.searchResultSetListRv.adapter = setListAdapter
+//    }
 
 
 }

@@ -124,7 +124,7 @@
                 app:destination="@id/homeFragment" />
             <argument
                 android:name="setId"
-                app:argType="integer" />
+                app:argType="long" />
         </fragment>
     </navigation>
 </navigation>

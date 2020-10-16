@@ -18,21 +18,10 @@ interface QuizletApi {
     @POST("/login")
     suspend fun login(@Body loginRequest: AccountRequest): Response<ServerResponse>
 
-    //Folder routes
-    @POST("/addFolder")
-    suspend fun addFolder(@Body addFolderRequest: AddFolderRequest) : Response<ServerResponse>
 
-    @GET
-    suspend fun getAllFolders() : Response<FolderListResponse>
+    @POST("/addSetWithTerms")
+    suspend fun addNewSet(@Body newSetRequest: NewSetRequest): Response<ServerResponse>
 
-    @POST("/getSetsWithQuery")
-    suspend fun searchSets(@Body searchSetRequest: SearchRequest) : Response<SearchResponse>
-
-    @POST("/addSet")
-    suspend fun addNewSet(@Body addSetRequest: SetWithTermsRequest): Response<AddSetResponse>
-
-    @POST("/getSetWithId")
-    suspend fun getSetTermsWithId(@Body getSetWithTermsRequest: GetSetWithTermsRequest) : Response<SetWithTermsResponse>
 
 
 }
