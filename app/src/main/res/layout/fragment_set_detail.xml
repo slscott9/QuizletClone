@@ -4,6 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.sets.SetDetailFragment">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.quizletclone.ui.sets.SetDetailViewModel" />
+    </data>
+
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:fitsSystemWindows="true"
@@ -12,9 +18,10 @@
 
 
         <androidx.core.widget.NestedScrollView
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -22,41 +29,63 @@
 
                 <TextView
                     android:id="@+id/tvSetName"
-                    android:layout_marginTop="16dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="32dp"
+                    android:text="@{viewModel.set.setName}"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvCircleProfile"
-                    tools:text="New Set" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tvCircleProfile"
-                    android:layout_width="21dp"
-                    android:layout_height="21dp"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginTop="16dp"
                     android:background="@drawable/circle"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
                     app:layout_constraintStart_toStartOf="@+id/tvSetName"
-                    tools:text="S" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvSetName" />
 
                 <TextView
                     android:id="@+id/tvUserName"
+                    android:textStyle="bold"
+                    android:text="@{viewModel.userName}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toRightOf="@id/tvCircleProfile"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvCircleProfile"
+                    app:layout_constraintStart_toEndOf="@+id/tvCircleProfile"
                     app:layout_constraintTop_toTopOf="@+id/tvCircleProfile"
                     tools:text="Stuart" />
 
                 <TextView
                     android:id="@+id/tvTermCount"
+                    android:text="@{viewModel.set.termCount}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="@+id/tvUserName"
-                    app:layout_constraintLeft_toRightOf="@id/tvUserName"
+                    android:layout_marginStart="8dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/tvUserName"
                     app:layout_constraintStart_toEndOf="@+id/tvUserName"
-                    app:layout_constraintTop_toBottomOf="@+id/tvSetName"
                     tools:text="15" />
 
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvTermList"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvCircleProfile">
+
+                </androidx.recyclerview.widget.RecyclerView>
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

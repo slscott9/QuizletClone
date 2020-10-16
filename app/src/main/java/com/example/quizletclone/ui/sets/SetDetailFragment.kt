@@ -9,24 +9,24 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.quizletclone.R
 import com.example.quizletclone.databinding.FragmentSetDetailBinding
+import com.example.quizletclone.ui.adapters.SetListAdapter
 import com.example.quizletclone.ui.adapters.TermListAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class SetDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentSetDetailBinding
-    private lateinit var args: SetDetailFragmentArgs
+    private  val args: SetDetailFragmentArgs by navArgs()
     private val viewModel : SetDetailViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         viewModel.setSetId(args.setId)
-
-
-
     }
 
 
@@ -40,7 +40,6 @@ class SetDetailFragment : Fragment() {
 
 
 
-
         return binding.root
     }
 
@@ -48,19 +47,18 @@ class SetDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val termListAdapter = TermListAdapter()
+        binding.viewModel = viewModel
 
 
         binding.setDetailToolbar.setNavigationOnClickListener {
             redirectToHomeFragment()
         }
 
-
-
-        viewModel.set
-
         viewModel.termList.observe(viewLifecycleOwner){
             termListAdapter.submitList(it)
         }
+
+        binding.rvTermList.adapter = termListAdapter
     }
 
     private fun redirectToHomeFragment() {

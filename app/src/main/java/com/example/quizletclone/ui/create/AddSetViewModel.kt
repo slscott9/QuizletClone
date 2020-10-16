@@ -37,7 +37,7 @@ class AddSetViewModel @ViewModelInject constructor(
             setName = setName,
             userEmail = sharedPreferences.getString(Constants.KEY_LOGGED_IN_EMAIL, Constants.NO_EMAIL).toString(),
             folderId = null,
-            termCount = termList.size,
+            termCount = termList.size.toString(),
             timeStamp = Date.from(Instant.now()).time
 
         )

@@ -17,6 +17,9 @@ object Constants {
 
     const val ENCRYPTED_SHARED_PREF_NAME = "quizlet_encr_shared_pref"
 
+    const val USER_NAME = "USER_NAME"
+    const val NO_USERNAME = "NO_USER_NAME"
+
     const val KEY_LOGGED_IN_EMAIL = "KEY_LOGGED_IN_EMAIL"
     const val KEY_PASSWORD = "KEY_PASSWORD"
     const val NO_EMAIL = "NO_EMAIL"

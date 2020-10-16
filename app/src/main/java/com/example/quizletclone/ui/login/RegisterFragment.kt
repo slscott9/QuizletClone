@@ -66,6 +66,7 @@ class RegisterFragment : BaseFragment(R.layout.fragment_register) {
                         showSnackBar(it.data ?: "Successfully registered!")
                         sharedPref.edit().putString(Constants.KEY_LOGGED_IN_EMAIL, binding.etRegisterEmail.text.toString()).apply()
                         sharedPref.edit().putString(Constants.KEY_PASSWORD, binding.etRegisterPassword.text.toString()).apply()
+                        sharedPref.edit().putString(Constants.USER_NAME, binding.etRegisterUsername.text.toString()).apply()
                         findNavController().navigate(R.id.navigation2)
                     }
                     Status.ERROR -> {

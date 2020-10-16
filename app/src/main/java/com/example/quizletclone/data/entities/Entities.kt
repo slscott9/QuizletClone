@@ -46,7 +46,7 @@ data class Set(
     val folderId: Long?,
     val setName : String,
     val userEmail: String,
-    val termCount: Int = 0,
+    val termCount: String = "",
     val timeStamp: Long
 
 )
@@ -155,7 +155,7 @@ fun SetContainer.asNetworkModels() : List<NetworkSet>{
             folderId = it.folderId,
             userEmail = it.userEmail,
             setName = it.setName,
-            termCount = it.termCount,
+            termCount = it.termCount.toInt(),
             timeStamp= it.timeStamp
 
         )
