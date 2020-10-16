@@ -4,6 +4,7 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.example.quizletclone.data.dto.DomainFolder
 import com.example.quizletclone.data.dto.DomainSet
+import com.example.quizletclone.data.entities.Term
 
 @BindingAdapter("setFolderName")
 fun TextView.setFolderName(item: DomainFolder?){
@@ -38,6 +39,20 @@ fun TextView.setTermCount(item : DomainSet?){
 fun TextView.setUserName(item : DomainSet?){
     item?.userEmail?.let {
         text = item.userEmail
+    }
+}
+
+@BindingAdapter("setTermQuestion")
+fun TextView.setTermQuestion(item : Term?){
+    item?.question?.let{
+        text = item.question
+    }
+}
+
+@BindingAdapter("setTermAnswer")
+fun TextView.setTermAnswer(item : Term?){
+    item?.answer?.let{
+        text = item.answer
     }
 }
 

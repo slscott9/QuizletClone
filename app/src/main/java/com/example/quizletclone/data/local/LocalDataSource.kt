@@ -1,8 +1,11 @@
 package com.example.quizletclone.data.local
 
+import androidx.lifecycle.LiveData
 import com.example.quizletclone.data.entities.Folder
 import com.example.quizletclone.data.entities.Set
+import com.example.quizletclone.data.entities.SetWithTerms
 import com.example.quizletclone.data.entities.Term
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class LocalDataSource @Inject constructor(
@@ -15,5 +18,9 @@ class LocalDataSource @Inject constructor(
 
     override suspend fun insertTerms(termList: List<Term>) {
         dao.insertTerms(termList)
+    }
+
+    override  fun getSetAndTermsWithId(setId: Long): LiveData<SetWithTerms> {
+        return dao.getSetsAndTermsWithId(setId)
     }
 }

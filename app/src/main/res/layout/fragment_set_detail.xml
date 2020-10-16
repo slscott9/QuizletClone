@@ -10,36 +10,76 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/set_detail_toolbar"
-            app:layout_scrollFlags="scroll|enterAlways|snap"
-            android:layout_width="match_parent"
-            app:navigationIcon="@drawable/ic_baseline_arrow_back_white"
-            app:title="Set detail"
-            app:menu="@menu/set_detail_menu"
-            android:layout_height="?attr/actionBarSize">
-
-
-        </com.google.android.material.appbar.MaterialToolbar>
-        </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.core.widget.NestedScrollView
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvSetName"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCircleProfile"
+                    tools:text="New Set" />
+
+                <TextView
+                    android:id="@+id/tvCircleProfile"
+                    android:layout_width="21dp"
+                    android:layout_height="21dp"
+                    android:background="@drawable/circle"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvSetName"
+                    tools:text="S" />
+
+                <TextView
+                    android:id="@+id/tvUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/tvCircleProfile"
+                    app:layout_constraintTop_toTopOf="@+id/tvCircleProfile"
+                    tools:text="Stuart" />
+
+                <TextView
+                    android:id="@+id/tvTermCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvUserName"
+                    app:layout_constraintLeft_toRightOf="@id/tvUserName"
+                    app:layout_constraintStart_toEndOf="@+id/tvUserName"
+                    app:layout_constraintTop_toBottomOf="@+id/tvSetName"
+                    tools:text="15" />
 
 
 
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>
 
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/set_detail_toolbar"
+                app:layout_scrollFlags="scroll|enterAlways|snap"
+                android:layout_width="match_parent"
+                app:navigationIcon="@drawable/ic_baseline_arrow_back_white"
+                app:title="Set detail"
+                app:menu="@menu/set_detail_menu"
+                android:layout_height="?attr/actionBarSize">
+
+
+            </com.google.android.material.appbar.MaterialToolbar>
+        </com.google.android.material.appbar.AppBarLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
