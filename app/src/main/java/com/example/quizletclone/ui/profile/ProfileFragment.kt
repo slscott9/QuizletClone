@@ -48,7 +48,7 @@ class ProfileFragment : Fragment() {
             .setPopUpTo(R.id.homeLoginFragment, true)
             .build()
         findNavController().navigate(
-            ProfileFragmentDirections.actionProfileFragmentToHomeLoginFragment(),
+            ProfileFragmentDirections.actionProfileFragmentToHomeFragment2(),
             navOptions
         )
     }

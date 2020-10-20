@@ -66,7 +66,7 @@ class SetDetailFragment : Fragment() {
             .setPopUpTo(R.id.setDetailFragment, true)
             .build()
 
-        findNavController().navigate(SetDetailFragmentDirections.actionSetDetailFragmentToHomeFragment(), navOptions)
+        findNavController().navigate(SetDetailFragmentDirections.actionGlobalHomeFragment2(), navOptions)
     }
 
 

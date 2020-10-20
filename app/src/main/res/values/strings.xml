@@ -34,4 +34,6 @@
     <string name="classes_tab">CLASSES</string>
     <string name="users_TAB">USERS</string>
     <string name="set_name_hint">Subject, chapter, unit</string>
+    <string name="set_list_title">Sets</string>
+    <string name="add_set_menu_item_title">add set</string>
 </resources>

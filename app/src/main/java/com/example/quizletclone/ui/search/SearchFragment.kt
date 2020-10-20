@@ -7,10 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
+import androidx.navigation.ui.setupWithNavController
 import com.example.quizletclone.R
 import com.example.quizletclone.databinding.FragmentSearchBinding
 import com.example.quizletclone.ui.adapters.SearchViewPagerAdapter
+import com.example.quizletclone.ui.home.BottomSheetFragment
 import com.example.quizletclone.utils.hiltNavGraphViewModels
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -35,6 +38,8 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupNavigation()
+
         val pagerAdapter = SearchViewPagerAdapter(this)
         binding.viewPager2.adapter = pagerAdapter
 
@@ -52,13 +57,17 @@ class SearchFragment : Fragment() {
                 return true
             }
         })
-//
-//        viewModel.searchList.observe(viewLifecycleOwner){
-//            it?.let {
-//
-//            }
-//        }
+    }
 
+
+    fun setupNavigation() {
+        binding.searchFragBottomNavigation.setupWithNavController(findNavController())
+
+    }
+
+    private fun showBottomSheetDialogFragment() {
+        val bottomSheetFragment = BottomSheetFragment()
+        bottomSheetFragment.show(parentFragmentManager, bottomSheetFragment.tag)
     }
 
 
