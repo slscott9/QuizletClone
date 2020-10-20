@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="8dp"
             android:text="@string/tvSetsTitle"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -48,11 +48,12 @@
             android:id="@+id/tvFoldersTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="188dp"
+            android:layout_marginStart="8dp"
             android:text="@string/tvFoldersTitle"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/tvSetsTitle"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvSetsTitle" />
 
         <TextView
@@ -82,15 +83,16 @@
 
         <TextView
             android:id="@+id/tvViewAllFolders"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="19dp"
             android:layout_marginStart="256dp"
-            android:textColor="@color/turquise"
+            android:layout_marginEnd="32dp"
             android:text="@string/view_all"
+            android:textColor="@color/turquise"
             app:layout_constraintBottom_toBottomOf="@+id/tvFoldersTitle"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tvFoldersTitle"
-            app:layout_constraintTop_toTopOf="@+id/tvFoldersTitle"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="@+id/tvFoldersTitle" />
 
         <ImageView
             android:id="@+id/ivRightArrow2"
@@ -101,21 +103,29 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/tvViewAllFolders"
-            app:layout_constraintTop_toTopOf="@+id/tvViewAllFolders"
-            app:layout_constraintVertical_bias="0.4" />
+            app:layout_constraintTop_toTopOf="@+id/tvViewAllFolders" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvSets"
-            android:layout_width="161dp"
-            android:layout_height="107dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toTopOf="@+id/tvFoldersTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.465"
             app:layout_constraintStart_toStartOf="@+id/tvSetsTitle"
             app:layout_constraintTop_toBottomOf="@+id/tvSetsTitle" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="304dp"
-            android:layout_height="136dp"
+            android:id="@+id/rvFolderList"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/tvFoldersTitle"
             app:layout_constraintTop_toBottomOf="@+id/tvFoldersTitle" />
 

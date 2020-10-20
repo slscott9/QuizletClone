@@ -40,6 +40,7 @@ class SetDetailViewModel @ViewModelInject constructor(
     val termList: LiveData<List<Term>> = _termList
 
     fun setSetId(setId : Long) {
+
         _setId.value = setId
     }
 

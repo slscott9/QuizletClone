@@ -93,6 +93,32 @@ data class FolderContainer(
     val folderList : List<Folder>
 )
 
+fun List<Set>.asDomainSet() : List<DomainSet> {
+    return map {
+        DomainSet(
+            setId = it.setId,
+            folderId = it.folderId,
+            userEmail = it.userEmail,
+            setName = it.setName,
+            timeStamp= it.timeStamp
+        )
+    }
+}
+
+fun List<Folder>.asDomainFolder() : List<DomainFolder> {
+    return map {
+        DomainFolder(
+
+            name = it.name,
+            folderId = it.folderId,
+            userEmail = it.userEmail,
+            userName = it.userName,
+            description = it.description,
+            timeStamp= it.timeStamp
+        )
+    }
+}
+
 fun FolderContainer.asDomainModel() : List<DomainFolder>{
     return folderList.map{
         DomainFolder(
@@ -175,5 +201,27 @@ fun TermContainer.asNetworkModels() : List<NetworkTerm> {
     }
 }
 
+fun List<Term>.asNetworkTerms() : List<NetworkTerm> {
+    return map {
+        NetworkTerm(
+            termId = it.termId,
+            setId = it.setId,
+            term = it.question,
+            answer = it.answer,
+            timeStamp = it.timeStamp
+        )
+    }
+}
+
+fun Set.asNetworkSet() : NetworkSet {
+    return NetworkSet(
+        setId = setId,
+        folderId = folderId,
+        userEmail = userEmail,
+        setName = setName,
+        termCount = termCount.toInt(),
+        timeStamp =  timeStamp
+    )
+}
 
 

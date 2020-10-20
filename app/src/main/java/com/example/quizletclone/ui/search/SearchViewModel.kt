@@ -2,10 +2,8 @@ package com.example.quizletclone.ui.search
 
 import android.content.SharedPreferences
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
+import androidx.lifecycle.*
+import com.example.quizletclone.data.entities.asDomainSet
 
 import com.example.quizletclone.data.repo.RepoInterface
 import com.example.quizletclone.other.Constants
@@ -39,20 +37,13 @@ class SearchViewModel @ViewModelInject constructor(
         searchChannel.offer(search)
     }
 
-//    private val _searchList = searchChannel.asFlow()
-//        .map { search ->
-//
-//            repo.getSetsWithSearch(
-//                SearchRequest(
-//                    searchParam = search,
-//                    userEmail = sharedPreferences.getString(
-//                        Constants.KEY_LOGGED_IN_EMAIL,
-//                        Constants.NO_EMAIL
-//                    ).toString()
-//                ))
-//        }
-//
-//    val searchList = _searchList.asLiveData()
+    private val _searchList = searchChannel.asFlow()
+        .map { search ->
+
+            repo.getSetsWithSearchParam(search).asDomainSet()
+        }
+
+    val searchList = _searchList.asLiveData(Dispatchers.IO + viewModelScope.coroutineContext)
 
 
 

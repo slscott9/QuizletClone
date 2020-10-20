@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import com.example.quizletclone.data.dto.NetworkSet
 import com.example.quizletclone.data.dto.NetworkTerm
+import com.example.quizletclone.data.entities.Folder
 import com.example.quizletclone.data.entities.Set
 import com.example.quizletclone.data.entities.SetWithTerms
 import com.example.quizletclone.data.entities.Term
@@ -61,15 +62,10 @@ class RepoImpl @Inject constructor(
 
     //Send new set to network
 
-    override suspend fun sendSet(newSet: NetworkSet, termList: List<NetworkTerm>) : Resource<String> = withContext(Dispatchers.IO) {
+    override suspend fun sendSet(newSetRequest: NewSetRequest) : Resource<String> = withContext(Dispatchers.IO) {
 
         try {
-            val response = remoteDataSource.sendSet(
-                NewSetRequest(
-                    set = newSet,
-                    termList
-                )
-            )
+            val response = remoteDataSource.sendSet(newSetRequest)
             Resource.success(response.message)
         }catch (e : Exception){
             Resource.error("Check network connection", e.message)
@@ -78,5 +74,30 @@ class RepoImpl @Inject constructor(
 
     override  fun getSetAndTermsWithId(setId: Long): LiveData<SetWithTerms> {
         return localDataSource.getSetAndTermsWithId(setId)
+    }
+
+    override suspend fun getAllTermsWithSetId(setId: Long): List<Term> {
+        return localDataSource.getAllTermsWithSetId(setId)
+    }
+
+    override suspend fun getSetWithId(setId: Long): Set {
+
+        return localDataSource.getSetWithId(setId)
+    }
+
+    override fun getAllSets(): Flow<List<Set>> {
+        return localDataSource.getAllSets()
+    }
+
+    override fun getAllFolders(): Flow<List<Folder>> {
+        return localDataSource.getAllFolders()
+
+    }
+
+
+    //get sets with search param
+
+    override suspend fun getSetsWithSearchParam(setName: String): List<Set> {
+        return localDataSource.getSetsWithSearchParam(setName)
     }
 }

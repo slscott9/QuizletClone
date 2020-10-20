@@ -77,14 +77,15 @@ class AddSetFragment : Fragment() {
             when(it.status){
                 Status.SUCCESS -> {
                     binding.addSetProgressBar.visibility = View.GONE
-                    redirectToSetDetail(it.data?.setId!!)
+                    Timber.i("set id passed is ${viewModel.setId.toString()}")
+                    redirectToSetDetail(viewModel.setId)
 
                 }
                 Status.LOADING -> {
                     binding.addSetProgressBar.visibility = View.VISIBLE
                 }
                 Status.ERROR -> {
-                    Toast.makeText(requireActivity(), "Failed to add set", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireActivity(), it.message, Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -106,6 +107,8 @@ class AddSetFragment : Fragment() {
             if(!it.etTermInput.text.isNullOrBlank() &&
                 !it.etDefinitionInput.text.isNullOrBlank()){
 
+                Timber.i( it.etTermInput.text.toString(),
+                    it.etDefinitionInput.text.toString())
                 termList.add(Term(
                     it.etTermInput.text.toString(),
                     it.etDefinitionInput.text.toString()

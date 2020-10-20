@@ -77,7 +77,7 @@ fun NetworkSetContainer.asDatabaseModels() : List<Set>{
 fun NetworkTermContainer.asDatabaseModels() : List<Term> {
     return termList.map {
         Term(
-            setId = it.termId,
+            setId = it.setId,
             termId = it.termId,
             question = it.term,
             answer = it.answer,

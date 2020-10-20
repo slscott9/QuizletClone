@@ -23,4 +23,24 @@ class LocalDataSource @Inject constructor(
     override  fun getSetAndTermsWithId(setId: Long): LiveData<SetWithTerms> {
         return dao.getSetsAndTermsWithId(setId)
     }
+
+    override suspend fun getAllTermsWithSetId(setId: Long): List<Term> {
+        return dao.getAllTermsWithSetId(setId)
+    }
+
+    override suspend fun getSetWithId(setId: Long): Set {
+        return dao.getSetWithId(setId)
+    }
+
+    override fun getAllSets(): Flow<List<Set>> {
+        return dao.getAllSets()
+    }
+
+    override fun getAllFolders(): Flow<List<Folder>> {
+        return dao.getAllFolders()
+    }
+
+    override suspend fun getSetsWithSearchParam(setName: String): List<Set> {
+        return dao.getSetsWithSearchParam(setName)
+    }
 }

@@ -2,7 +2,7 @@ package com.example.quizletclone.ui.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.quizletclone.ui.sets.SetListFragment
+import com.example.quizletclone.ui.search.SearchSetListFragment
 
 
 class SearchViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
@@ -11,8 +11,8 @@ class SearchViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment
 
     override fun createFragment(position: Int): Fragment {
         return when(position){
-            0 -> SetListFragment()
-            else -> SetListFragment()
+            0 -> SearchSetListFragment()
+            else -> SearchSetListFragment()
         }
     }
 

@@ -112,7 +112,7 @@
         </fragment>
         <fragment
             android:id="@+id/setListFragment"
-            android:name="com.example.quizletclone.ui.sets.SetListFragment"
+            android:name="com.example.quizletclone.ui.search.SearchSetListFragment"
             android:label="SetListFragment" />
         <fragment
             android:id="@+id/setDetailFragment"
