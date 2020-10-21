@@ -89,6 +89,13 @@ class HomeFragment : Fragment() {
                 else -> false
             }
         }
+        /*
+            setupwithnavcontroller suposedly already uses setOnnavigationItemSElected
+
+            So when doing this none of the actions will work
+
+            bottom nav does work if using onNavigationItemReselected for some reason
+         */
 
 
 //        binding.homeFragmentBottomNav.setOnNavigationItemReselectedListener {
