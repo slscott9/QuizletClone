@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.ui.setupWithNavController
 import com.example.quizletclone.R
 import com.example.quizletclone.databinding.FragmentSetDetailBinding
 import com.example.quizletclone.ui.adapters.SetListAdapter
@@ -49,6 +50,8 @@ class SetDetailFragment : Fragment() {
         val termListAdapter = TermListAdapter()
         binding.viewModel = viewModel
 
+        binding.setDetailBottomNav.setupWithNavController(findNavController())
+
 
         binding.setDetailToolbar.setNavigationOnClickListener {
             redirectToHomeFragment()
@@ -66,7 +69,7 @@ class SetDetailFragment : Fragment() {
             .setPopUpTo(R.id.setDetailFragment, true)
             .build()
 
-        findNavController().navigate(SetDetailFragmentDirections.actionGlobalHomeFragment2(), navOptions)
+        findNavController().navigate(SetDetailFragmentDirections.actionSetDetailFragmentToSetListFragment(), navOptions)
     }
 
 

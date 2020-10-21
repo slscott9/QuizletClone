@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.quizletclone.R
 import com.example.quizletclone.databinding.FragmentFolderBinding
 import com.example.quizletclone.ui.adapters.FolderListAdapter
@@ -33,6 +34,8 @@ class FolderListFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_folder, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
 
+        binding.bottomNavigation.setupWithNavController(findNavController())
+
         binding.folderActivityToolbar.setOnMenuItemClickListener {
             when(it.itemId){
                 R.id.add_folder_menu_item -> {
@@ -54,10 +57,7 @@ class FolderListFragment : Fragment() {
             findNavController().navigate(FolderListFragmentDirections.actionFolderListFragmentToFolderDetailFragment(it))
         })
 
-
         return binding.root
-
-
 
     }
 
@@ -66,7 +66,7 @@ class FolderListFragment : Fragment() {
             .setPopUpTo(R.id.folderListFragment, true) //kills login fragment so when back button is pressed from cemetery list we do not go back to login fragment
             .build()
         findNavController().navigate(
-            FolderListFragmentDirections.actionGlobalHomeFragment(), navOptions
+            FolderListFragmentDirections.actionFolderListFragmentToHomeFragment3(), navOptions
         )
     }
 

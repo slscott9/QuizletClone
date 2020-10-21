@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -51,12 +50,12 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val bottomNav = binding.bottomNavigation
-        bottomNav.setupWithNavController(Navigation.findNavController(requireActivity(), R.id.homeFragment))
-
         setupBottomNavListeners()
         setupViewAllListeners()
     }
+
+
+
 
     private fun showBottomSheetDialogFragment() {
         val bottomSheetFragment = BottomSheetFragment()
@@ -65,15 +64,20 @@ class HomeFragment : Fragment() {
 
     private fun setupViewAllListeners() {
         binding.tvViewAllFolders.setOnClickListener {
-            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToFolderNavigation())
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragment3ToFolderListFragment())
         }
 
         binding.tvViewAllSets.setOnClickListener {
-            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSetNavigation())
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragment3ToSetListFragment())
         }
     }
+
+
     private fun setupBottomNavListeners() {
-        binding.bottomNavigation.setOnNavigationItemSelectedListener {
+
+        binding.homeBottomNav.setupWithNavController(findNavController())
+
+        binding.homeBottomNav.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.add_set_menu_item -> {
                     showBottomSheetDialogFragment()
@@ -104,6 +108,11 @@ class HomeFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireActivity() , LinearLayoutManager.HORIZONTAL, false)
 
         }
+
+    }
+
+
+    fun setupBottomNav() {
 
     }
 

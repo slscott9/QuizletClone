@@ -59,6 +59,18 @@ class SearchFragment : Fragment() {
         })
     }
 
+    fun setupDialogFragment() {
+        binding.searchFragBottomNavigation.setOnNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.add_set_menu_item -> {
+                    showBottomSheetDialogFragment()
+                    true
+                }
+                else -> false
+            }
+        }
+    }
+
 
     fun setupNavigation() {
         binding.searchFragBottomNavigation.setupWithNavController(findNavController())
