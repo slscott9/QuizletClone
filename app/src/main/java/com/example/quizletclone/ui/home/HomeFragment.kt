@@ -62,10 +62,6 @@ class HomeFragment : Fragment() {
 
 
 
-    private fun showBottomSheetDialogFragment() {
-        val bottomSheetFragment = BottomSheetFragment()
-        bottomSheetFragment.show(parentFragmentManager, bottomSheetFragment.tag)
-    }
 
     private fun setupViewAllListeners() {
         binding.tvViewAllFolders.setOnClickListener {
@@ -78,19 +74,39 @@ class HomeFragment : Fragment() {
     }
 
 
+
+
     private fun setupBottomNavListeners() {
 
         Timber.i("setupBottomNav called from home fragment")
 
-
-        binding.homeFragmentBottomNav.setOnNavigationItemReselectedListener {
+        binding.homeFragmentBottomNav.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.add_set_menu_item -> {
                     showBottomSheetDialogFragment()
+                    true
                 }
+                else -> false
             }
         }
+
+
+//        binding.homeFragmentBottomNav.setOnNavigationItemReselectedListener {
+//            when(it.itemId){
+//                R.id.add_set_menu_item -> {
+//                    showBottomSheetDialogFragment()
+//                }
+//            }
+//        }
     }
+
+    private fun showBottomSheetDialogFragment() {
+        val bottomSheetFragment = BottomSheetFragment()
+        bottomSheetFragment.show(parentFragmentManager, bottomSheetFragment.tag)
+    }
+
+
+
 
     private fun setupListAdapters(){
         setListAdapter = SetListAdapter(SetListListener {
