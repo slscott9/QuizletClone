@@ -13,7 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.quizletclone.R
 import com.example.quizletclone.databinding.FragmentHomeBinding
 import com.example.quizletclone.ui.adapters.*
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -50,6 +52,9 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.homeFragmentBottomNav.setupWithNavController(findNavController())
+
+
         setupBottomNavListeners()
         setupViewAllListeners()
     }
@@ -75,15 +80,14 @@ class HomeFragment : Fragment() {
 
     private fun setupBottomNavListeners() {
 
-        binding.homeBottomNav.setupWithNavController(findNavController())
+        Timber.i("setupBottomNav called from home fragment")
 
-        binding.homeBottomNav.setOnNavigationItemSelectedListener {
+
+        binding.homeFragmentBottomNav.setOnNavigationItemReselectedListener {
             when(it.itemId){
                 R.id.add_set_menu_item -> {
                     showBottomSheetDialogFragment()
-                    true
                 }
-                else -> false
             }
         }
     }
