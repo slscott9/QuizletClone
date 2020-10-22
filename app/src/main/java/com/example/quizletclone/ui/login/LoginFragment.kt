@@ -107,11 +107,9 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
 
     //function is called we pop loginFragment off of backstack killing it and redirect to cemetery list fragment
     private fun redirectLogin() {
-        val navOptions = NavOptions.Builder()
-            .setPopUpTo(R.id.loginFragment, true) //kills login fragment so when back button is pressed from cemetery list we do not go back to login fragment
-            .build()
+
         findNavController().navigate(
-            LoginFragmentDirections.actionLoginFragmentToHomeFragment(), navOptions
+            LoginFragmentDirections.actionLoginFragmentToHomeNavGraph()
         )
     }
 

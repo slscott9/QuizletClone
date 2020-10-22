@@ -21,13 +21,13 @@ import dagger.hilt.android.AndroidEntryPoint
 class SetDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentSetDetailBinding
-    private  val args: SetDetailFragmentArgs by navArgs()
+//    private  val args: SetDetailFragmentArgs by navArgs()
     private val viewModel : SetDetailViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel.setSetId(args.setId)
+//        viewModel.setSetId(args.setId)
     }
 
 
@@ -54,7 +54,7 @@ class SetDetailFragment : Fragment() {
 
 
         binding.setDetailToolbar.setNavigationOnClickListener {
-            redirectToHomeFragment()
+//            redirectToHomeFragment()
         }
 
         viewModel.termList.observe(viewLifecycleOwner){
@@ -64,13 +64,13 @@ class SetDetailFragment : Fragment() {
         binding.rvTermList.adapter = termListAdapter
     }
 
-    private fun redirectToHomeFragment() {
-        val navOptions = NavOptions.Builder()
-            .setPopUpTo(R.id.setDetailFragment, true)
-            .build()
-
-        findNavController().navigate(SetDetailFragmentDirections.actionSetDetailFragmentToSetListFragment(), navOptions)
-    }
+//    private fun redirectToHomeFragment() {
+//        val navOptions = NavOptions.Builder()
+//            .setPopUpTo(R.id.setDetailFragment, true)
+//            .build()
+//
+//        findNavController().navigate(SetDetailFragmentDirections.actionSetDetailFragmentToSetListFragment(), navOptions)
+//    }
 
 
 }

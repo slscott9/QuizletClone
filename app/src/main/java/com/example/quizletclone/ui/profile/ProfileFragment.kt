@@ -6,10 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.quizletclone.R
+import com.example.quizletclone.databinding.FragmentProfileBinding
 import com.example.quizletclone.other.Constants
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_profile.*
@@ -21,17 +24,26 @@ class ProfileFragment : Fragment() {
     @Inject
     lateinit var sharedPref: SharedPreferences
 
+    private lateinit var navController: NavController
+    private lateinit var binding : FragmentProfileBinding
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        navController = findNavController()
+
+//        setupBottomNav()
 
         btnLogout.setOnClickListener {
             logout()
@@ -47,11 +59,35 @@ class ProfileFragment : Fragment() {
         val navOptions = NavOptions.Builder()
             .setPopUpTo(R.id.homeLoginFragment, true)
             .build()
-        findNavController().navigate(
-            ProfileFragmentDirections.actionProfileFragmentToHomeFragment3(),
-            navOptions
+        navController.navigate(
+            R.id.home_nav_graph
+
         )
     }
+
+//    private fun setupBottomNav() {
+//        binding.profileFragmentBottomNav.setOnNavigationItemSelectedListener {
+//            when(it.itemId){
+//                R.id.bn_create_menu_item -> {
+//                    navController.navigate(R.id.bottomSheetFragment)
+//                    true
+//                }
+//                R.id.bn_search_menu_item -> {
+//                    navController.navigate(R.id.searchFragment)
+//                    true
+//                }
+//                R.id.bn_home_menu_item -> {
+//                    navController.navigate(R.id.homeFragment3)
+//                    true
+//                }
+//                R.id.bn_profile_menu_item -> {
+//                    navController.navigate(R.id.profileFragment)
+//                    true
+//                }
+//                else -> false
+//            }
+//        }
+//    }
 
 
 }

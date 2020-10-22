@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,7 +25,7 @@ class HomeFragment : Fragment() {
     private lateinit var setListAdapter: SetListAdapter
     private lateinit var folderListAdapter: FolderListAdapter
     private val viewModel: HomeViewModel by viewModels()
-
+    private lateinit var navController: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,60 +53,33 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.homeFragmentBottomNav.setupWithNavController(findNavController())
+//        binding.homeFragmentBottomNav.setupWithNavController(findNavController())
+        navController = findNavController()
 
+//        setupBottomNav()
 
-        setupBottomNavListeners()
-        setupViewAllListeners()
+//        setupViewAllListeners()
     }
 
-
-
-
-
-    private fun setupViewAllListeners() {
-        binding.tvViewAllFolders.setOnClickListener {
-            findNavController().navigate(HomeFragmentDirections.actionHomeFragment3ToFolderListFragment())
-        }
-
-        binding.tvViewAllSets.setOnClickListener {
-            findNavController().navigate(HomeFragmentDirections.actionHomeFragment3ToSetListFragment())
-        }
-    }
-
-
-
-
-    private fun setupBottomNavListeners() {
-
-        Timber.i("setupBottomNav called from home fragment")
-
-        binding.homeFragmentBottomNav.setOnNavigationItemSelectedListener {
-            when(it.itemId){
-                R.id.add_set_menu_item -> {
-                    showBottomSheetDialogFragment()
-                    true
-                }
-                else -> false
-            }
-        }
-        /*
-            setupwithnavcontroller suposedly already uses setOnnavigationItemSElected
-
-            So when doing this none of the actions will work
-
-            bottom nav does work if using onNavigationItemReselected for some reason
-         */
-
-
-//        binding.homeFragmentBottomNav.setOnNavigationItemReselectedListener {
+//    private fun setupBottomNav() {
+//        binding.homeFragmentBottomNav.setOnNavigationItemSelectedListener {
 //            when(it.itemId){
-//                R.id.add_set_menu_item -> {
-//                    showBottomSheetDialogFragment()
+//                R.id.bn_create_menu_item -> {
+//                    navController.navigate(R.id.bottomSheetFragment)
+//                    true
 //                }
+//                R.id.bn_search_menu_item -> {
+//                    navController.navigate(HomeFragmentDirections.actionHomeFragment3ToSearchFragment())
+//                    true
+//                }
+//                R.id.bn_profile_menu_item -> {
+//                    navController.navigate(HomeFragmentDirections.actionHomeFragment3ToProfileFragment())
+//                    true
+//                }
+//                else -> false
 //            }
 //        }
-    }
+//    }
 
     private fun showBottomSheetDialogFragment() {
         val bottomSheetFragment = BottomSheetFragment()
@@ -113,6 +87,19 @@ class HomeFragment : Fragment() {
     }
 
 
+
+
+
+
+//    private fun setupViewAllListeners() {
+//        binding.tvViewAllFolders.setOnClickListener {
+//            findNavController().navigate(HomeFragmentDirections.actionHomeFragment3ToFolderListFragment())
+//        }
+//
+//        binding.tvViewAllSets.setOnClickListener {
+//            findNavController().navigate(HomeFragmentDirections.actionHomeFragment3ToSetListFragment())
+//        }
+//    }
 
 
     private fun setupListAdapters(){
@@ -139,9 +126,6 @@ class HomeFragment : Fragment() {
     }
 
 
-    fun setupBottomNav() {
-
-    }
 
 
 

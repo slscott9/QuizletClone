@@ -23,7 +23,7 @@ import timber.log.Timber
 @AndroidEntryPoint
 class SearchSetListFragment : Fragment() {
 
-    private val viewModel by hiltNavGraphViewModels<SearchViewModel>(R.id.navigation2)
+//    private val viewModel by hiltNavGraphViewModels<SearchViewModel>(R.id.navigation2)
 
     private lateinit var binding: FragmentSearchSetListBinding
     private lateinit var setListAdapter : SetListAdapter
@@ -54,10 +54,10 @@ class SearchSetListFragment : Fragment() {
         binding.searchResultSetListRv.adapter = setListAdapter
 
 
-        viewModel.searchList.observe(viewLifecycleOwner) {
-            setListAdapter.submitList(it)
-
-        }
+//        viewModel.searchList.observe(viewLifecycleOwner) {
+//            setListAdapter.submitList(it)
+//
+//        }
 
 
         binding.searchResultSetListRv.adapter = setListAdapter

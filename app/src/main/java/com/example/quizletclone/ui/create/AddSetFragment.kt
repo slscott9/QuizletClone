@@ -78,7 +78,7 @@ class AddSetFragment : Fragment() {
                 Status.SUCCESS -> {
                     binding.addSetProgressBar.visibility = View.GONE
                     Timber.i("set id passed is ${viewModel.setId.toString()}")
-                    redirectToSetDetail(viewModel.setId)
+//                    redirectToSetDetail(viewModel.setId)
 
                 }
                 Status.LOADING -> {
@@ -117,12 +117,12 @@ class AddSetFragment : Fragment() {
         }
     }
 
-    private fun redirectToSetDetail(setId: Long) {
-        val navOptions = NavOptions.Builder()
-            .setPopUpTo(R.id.addSetFragment, true)
-            .build()
-        findNavController().navigate(AddSetFragmentDirections.actionAddSetFragmentToSetDetailFragment(setId), navOptions)
-    }
+//    private fun redirectToSetDetail(setId: Long) {
+//        val navOptions = NavOptions.Builder()
+//            .setPopUpTo(R.id.addSetFragment, true)
+//            .build()
+//        findNavController().navigate(AddSetFragmentDirections.actionAddSetFragmentToSetDetailFragment(setId), navOptions)
+//    }
 
     data class Term(
         val term: String,

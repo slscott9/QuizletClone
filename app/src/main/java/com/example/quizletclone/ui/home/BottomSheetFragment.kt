@@ -37,10 +37,10 @@ class BottomSheetFragment() : BottomSheetDialogFragment(){
         super.onViewCreated(view, savedInstanceState)
 
 
-        binding.tvCreateSet.setOnClickListener {
-            findNavController().navigate(R.id.addSetFragment)
-            dismiss()
-        }
+//        binding.tvCreateSet.setOnClickListener {
+//            findNavController().navigate(R.id.addSetFragment)
+//            dismiss()
+//        }
 
         binding.tvCreateFolder.setOnClickListener {
             val createFolderDialogFragment = CreateFolderDialogFragment()

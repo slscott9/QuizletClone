@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.NavController
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import androidx.navigation.ui.setupWithNavController
@@ -22,7 +24,8 @@ import timber.log.Timber
 class SearchFragment : Fragment() {
 
     private lateinit var binding: FragmentSearchBinding
-    private val viewModel by hiltNavGraphViewModels<SearchViewModel>(R.id.navigation2)
+//    private val viewModel by hiltNavGraphViewModels<SearchViewModel>(R.id.navigation2)
+    private lateinit var navController : NavController
 
 
     override fun onCreateView(
@@ -38,7 +41,9 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupNavigation()
+        navController = findNavController()
+
+//        setupBottomNav()
 
         val pagerAdapter = SearchViewPagerAdapter(this)
         binding.viewPager2.adapter = pagerAdapter
@@ -51,7 +56,7 @@ class SearchFragment : Fragment() {
             override fun onQueryTextChange(newText: String?): Boolean {
                 newText?.let {
                     //Pass Search Query to this function in viewmodel
-                    viewModel.setSearchQuery(it)
+//                    viewModel.setSearchQuery(it)
                     Timber.i(newText)
                 }
                 return true
@@ -59,28 +64,32 @@ class SearchFragment : Fragment() {
         })
     }
 
-    fun setupDialogFragment() {
-        binding.searchFragBottomNavigation.setOnNavigationItemSelectedListener {
-            when(it.itemId){
-                R.id.add_set_menu_item -> {
-                    showBottomSheetDialogFragment()
-                    true
-                }
-                else -> false
-            }
-        }
-    }
+//    private fun setupBottomNav() {
+//        binding.searchFragBottomNavigation.setOnNavigationItemSelectedListener {
+//            when(it.itemId){
+//                R.id.bn_create_menu_item -> {
+//
+//                    navController.navigate(R.id.bottomSheetFragment)
+//                    true
+//                }
+//
+//                R.id.bn_home_menu_item -> {
+//                    navController.navigate(R.id.homeFragment3)
+//                    true
+//                }
+//                R.id.bn_profile_menu_item -> {
+//                    navController.navigate(R.id.profileFragment)
+//                    true
+//                }
+//                else -> false
+//            }
+//        }
+//    }
 
 
-    fun setupNavigation() {
-        binding.searchFragBottomNavigation.setupWithNavController(findNavController())
 
-    }
 
-    private fun showBottomSheetDialogFragment() {
-        val bottomSheetFragment = BottomSheetFragment()
-        bottomSheetFragment.show(parentFragmentManager, bottomSheetFragment.tag)
-    }
+
 
 
 }

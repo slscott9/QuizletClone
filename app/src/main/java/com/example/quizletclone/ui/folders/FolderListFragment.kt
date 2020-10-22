@@ -50,25 +50,25 @@ class FolderListFragment : Fragment() {
 
 
         binding.folderActivityToolbar.setNavigationOnClickListener {
-            redirectToHomeFragment()
+//            redirectToHomeFragment()
         }
 
-        folderListAdapter = FolderListAdapter(FolderListListener {
-            findNavController().navigate(FolderListFragmentDirections.actionFolderListFragmentToFolderDetailFragment(it))
-        })
+//        folderListAdapter = FolderListAdapter(FolderListListener {
+//            findNavController().navigate(FolderListFragmentDirections.actionFolderListFragmentToFolderDetailFragment(it))
+//        })
 
         return binding.root
 
     }
 
-    private fun redirectToHomeFragment() {
-        val navOptions = NavOptions.Builder()
-            .setPopUpTo(R.id.folderListFragment, true) //kills login fragment so when back button is pressed from cemetery list we do not go back to login fragment
-            .build()
-        findNavController().navigate(
-            FolderListFragmentDirections.actionFolderListFragmentToHomeFragment3(), navOptions
-        )
-    }
+//    private fun redirectToHomeFragment() {
+//        val navOptions = NavOptions.Builder()
+//            .setPopUpTo(R.id.folderListFragment, true) //kills login fragment so when back button is pressed from cemetery list we do not go back to login fragment
+//            .build()
+//        findNavController().navigate(
+//            FolderListFragmentDirections.actionFolderListFragmentToHomeFragment3(), navOptions
+//        )
+//    }
 
 
 }
