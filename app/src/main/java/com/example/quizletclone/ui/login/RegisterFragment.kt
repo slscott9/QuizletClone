@@ -67,7 +67,7 @@ class RegisterFragment : BaseFragment(R.layout.fragment_register) {
                         sharedPref.edit().putString(Constants.KEY_LOGGED_IN_EMAIL, binding.etRegisterEmail.text.toString()).apply()
                         sharedPref.edit().putString(Constants.KEY_PASSWORD, binding.etRegisterPassword.text.toString()).apply()
                         sharedPref.edit().putString(Constants.USER_NAME, binding.etRegisterUsername.text.toString()).apply()
-                        findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToHomeNavGraph())
+                        findNavController().navigate(RegisterFragmentDirections.actionGlobalNavigation2())
                     }
                     Status.ERROR -> {
                         binding.registerProgressBar.visibility = View.GONE

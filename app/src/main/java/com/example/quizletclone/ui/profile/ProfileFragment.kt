@@ -43,7 +43,6 @@ class ProfileFragment : Fragment() {
 
         navController = findNavController()
 
-//        setupBottomNav()
 
         btnLogout.setOnClickListener {
             logout()
@@ -60,34 +59,11 @@ class ProfileFragment : Fragment() {
             .setPopUpTo(R.id.homeLoginFragment, true)
             .build()
         navController.navigate(
-            R.id.home_nav_graph
+            R.id.navigation
 
         )
     }
 
-//    private fun setupBottomNav() {
-//        binding.profileFragmentBottomNav.setOnNavigationItemSelectedListener {
-//            when(it.itemId){
-//                R.id.bn_create_menu_item -> {
-//                    navController.navigate(R.id.bottomSheetFragment)
-//                    true
-//                }
-//                R.id.bn_search_menu_item -> {
-//                    navController.navigate(R.id.searchFragment)
-//                    true
-//                }
-//                R.id.bn_home_menu_item -> {
-//                    navController.navigate(R.id.homeFragment3)
-//                    true
-//                }
-//                R.id.bn_profile_menu_item -> {
-//                    navController.navigate(R.id.profileFragment)
-//                    true
-//                }
-//                else -> false
-//            }
-//        }
-//    }
 
 
 }

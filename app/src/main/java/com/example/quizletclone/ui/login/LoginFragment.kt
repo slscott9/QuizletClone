@@ -109,7 +109,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
     private fun redirectLogin() {
 
         findNavController().navigate(
-            LoginFragmentDirections.actionLoginFragmentToHomeNavGraph()
+            LoginFragmentDirections.actionGlobalNavigation2()
         )
     }
 

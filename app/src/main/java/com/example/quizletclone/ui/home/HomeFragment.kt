@@ -53,53 +53,22 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        binding.homeFragmentBottomNav.setupWithNavController(findNavController())
-        navController = findNavController()
+        setupViewAllListeners()
 
-//        setupBottomNav()
 
-//        setupViewAllListeners()
+
+        setupViewAllListeners()
     }
 
-//    private fun setupBottomNav() {
-//        binding.homeFragmentBottomNav.setOnNavigationItemSelectedListener {
-//            when(it.itemId){
-//                R.id.bn_create_menu_item -> {
-//                    navController.navigate(R.id.bottomSheetFragment)
-//                    true
-//                }
-//                R.id.bn_search_menu_item -> {
-//                    navController.navigate(HomeFragmentDirections.actionHomeFragment3ToSearchFragment())
-//                    true
-//                }
-//                R.id.bn_profile_menu_item -> {
-//                    navController.navigate(HomeFragmentDirections.actionHomeFragment3ToProfileFragment())
-//                    true
-//                }
-//                else -> false
-//            }
-//        }
-//    }
+    private fun setupViewAllListeners() {
+        binding.tvViewAllSets.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSetListFragment())
+        }
 
-    private fun showBottomSheetDialogFragment() {
-        val bottomSheetFragment = BottomSheetFragment()
-        bottomSheetFragment.show(parentFragmentManager, bottomSheetFragment.tag)
+        binding.tvViewAllSets.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToFolderListFragment())
+        }
     }
-
-
-
-
-
-
-//    private fun setupViewAllListeners() {
-//        binding.tvViewAllFolders.setOnClickListener {
-//            findNavController().navigate(HomeFragmentDirections.actionHomeFragment3ToFolderListFragment())
-//        }
-//
-//        binding.tvViewAllSets.setOnClickListener {
-//            findNavController().navigate(HomeFragmentDirections.actionHomeFragment3ToSetListFragment())
-//        }
-//    }
 
 
     private fun setupListAdapters(){
