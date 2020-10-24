@@ -3,13 +3,19 @@ package com.example.quizletclone
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.NavOptions
+import androidx.navigation.NavOptionsBuilder
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.quizletclone.R
 import com.example.quizletclone.ui.home.BottomSheetFragment
+import com.example.quizletclone.ui.search.SearchFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.bottom_sheet.*
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -22,23 +28,22 @@ class MainActivity : AppCompatActivity() {
 
         bottom_nav.setupWithNavController(navController)
 
+
 //        bottom_nav.setOnNavigationItemSelectedListener {
 //            when(it.itemId){
-//                R.id.create_menu_item -> {
+//                R.id.create_item -> {
 //                    val bottomSheetFragment = BottomSheetFragment()
 //                    bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
 //                    true
 //
 //                }
-//                R.id.search_menu_item -> {
-//                    navController.navigate(R.id.searchFragment)
-//                    true
-//                }
-//                R.id.profile_menu_item -> {
+//
+//
+//                R.id.profie_item -> {
 //                    navController.navigate(R.id.profileFragment)
 //                    true
 //                }
-//                R.id.home_menu_item -> {
+//                R.id.home_item -> {
 //                    navController.navigate(R.id.homeFragment)
 //                    true
 //                }
@@ -57,6 +62,7 @@ class MainActivity : AppCompatActivity() {
 
                 }
 
+//
 //                R.id.bottomSheetFragment -> {
 //                        val bottomSheetFragment = BottomSheetFragment()
 //                    bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)

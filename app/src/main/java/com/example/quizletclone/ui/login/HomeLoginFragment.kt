@@ -53,7 +53,7 @@ class HomeLoginFragment : BaseFragment(R.layout.fragment_home_login) {
         if(isLoggedIn()){
             authenticateAPI(currentEmail ?: "", currentPassword ?: "")
             findNavController().navigate(
-                HomeLoginFragmentDirections.actionGlobalNavigation2()
+                R.id.action_global_homeFragment
             )
         }
 

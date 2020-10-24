@@ -1,5 +1,6 @@
 package com.example.quizletclone.ui.home
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,8 +11,11 @@ import androidx.navigation.fragment.findNavController
 import com.example.quizletclone.R
 import com.example.quizletclone.databinding.BottomSheetBinding
 import com.example.quizletclone.ui.create.CreateFolderDialogFragment
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.bottom_sheet.*
 
 @AndroidEntryPoint
 class BottomSheetFragment() : BottomSheetDialogFragment(){
@@ -30,6 +34,11 @@ class BottomSheetFragment() : BottomSheetDialogFragment(){
     ): View? {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.bottom_sheet, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
+
+
+
+
         return binding.root
     }
 
@@ -42,6 +51,9 @@ class BottomSheetFragment() : BottomSheetDialogFragment(){
 //            dismiss()
 //        }
 
+
+
+
         binding.tvCreateFolder.setOnClickListener {
             val createFolderDialogFragment = CreateFolderDialogFragment()
             createFolderDialogFragment.show(parentFragmentManager, createFolderDialogFragment.tag)
@@ -49,8 +61,14 @@ class BottomSheetFragment() : BottomSheetDialogFragment(){
         }
 
 
+
+
         //onClickListener  for create Folder that displays a dialog fragment maybe? then creates new folder takes user to the new folder
     }
+
+
+
+
 
 //    private fun initView() {
 //        binding.tvCreateSet.setOnClickListener {

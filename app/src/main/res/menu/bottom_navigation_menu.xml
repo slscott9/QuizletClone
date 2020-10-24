@@ -7,7 +7,7 @@
         android:title="home"/>
 
     <item
-        android:id="@+id/searchFragment"
+        android:id="@+id/searchFragment2"
         android:icon="@drawable/ic_baseline_search_24"
         android:title="search"/>
 
@@ -19,7 +19,7 @@
 
 
     <item
-        android:id="@+id/profileFragment"
+        android:id="@+id/profileFragment2"
         android:icon="@drawable/ic_baseline_person_outline_24"
         android:title="profile"/>
 

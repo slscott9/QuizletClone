@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.quizletclone.R
 import com.example.quizletclone.databinding.FragmentProfileBinding
@@ -59,7 +58,7 @@ class ProfileFragment : Fragment() {
             .setPopUpTo(R.id.homeLoginFragment, true)
             .build()
         navController.navigate(
-            R.id.navigation
+            R.id.loginNavigation
 
         )
     }
