@@ -1,5 +1,6 @@
 package com.example.quizletclone.ui.sets
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.example.quizletclone.R
 import com.example.quizletclone.databinding.FragmentSetDetailBinding
@@ -21,13 +23,13 @@ import dagger.hilt.android.AndroidEntryPoint
 class SetDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentSetDetailBinding
-//    private  val args: SetDetailFragmentArgs by navArgs()
+    private  val args: SetDetailFragmentArgs by navArgs()
     private val viewModel : SetDetailViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-//        viewModel.setSetId(args.setId)
+        viewModel.setSetId(args.setId)
     }
 
 
@@ -39,8 +41,6 @@ class SetDetailFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_set_detail, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
 
-
-
         return binding.root
     }
 
@@ -50,7 +50,9 @@ class SetDetailFragment : Fragment() {
         val termListAdapter = TermListAdapter()
         binding.viewModel = viewModel
 
-        binding.setDetailBottomNav.setupWithNavController(findNavController())
+        setUpToolBarWithNav()
+
+
 
 
         binding.setDetailToolbar.setNavigationOnClickListener {
@@ -64,13 +66,29 @@ class SetDetailFragment : Fragment() {
         binding.rvTermList.adapter = termListAdapter
     }
 
-//    private fun redirectToHomeFragment() {
-//        val navOptions = NavOptions.Builder()
-//            .setPopUpTo(R.id.setDetailFragment, true)
-//            .build()
-//
-//        findNavController().navigate(SetDetailFragmentDirections.actionSetDetailFragmentToSetListFragment(), navOptions)
-//    }
+    private fun redirectToHomeFragment() {
+        val navOptions = NavOptions.Builder()
+            .setPopUpTo(R.id.setDetailFragment, true)
+            .build()
+
+        findNavController().navigate(SetDetailFragmentDirections.actionSetDetailFragmentToSetListFragment(), navOptions)
+    }
+
+    fun setUpToolBarWithNav() {
+        binding.setDetailToolbar.setNavigationOnClickListener {
+            redirectToHomeFragment()
+        }
+
+//        binding.setDetailToolbar.setOnMenuItemClickListener {
+//            when(it.itemId){
+//                R.id.set_detail_share_item -> {
+//                    startActivity(
+//                        Intent(requireActivity(), )
+//                    )
+//                }
+//            }
+//        }
+    }
 
 
 }

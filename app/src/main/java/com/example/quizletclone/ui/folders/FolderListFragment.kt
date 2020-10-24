@@ -34,7 +34,6 @@ class FolderListFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_folder, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
 
-        binding.bottomNavigation.setupWithNavController(findNavController())
 
         binding.folderActivityToolbar.setOnMenuItemClickListener {
             when(it.itemId){
@@ -53,9 +52,9 @@ class FolderListFragment : Fragment() {
 //            redirectToHomeFragment()
         }
 
-//        folderListAdapter = FolderListAdapter(FolderListListener {
-//            findNavController().navigate(FolderListFragmentDirections.actionFolderListFragmentToFolderDetailFragment(it))
-//        })
+        folderListAdapter = FolderListAdapter(FolderListListener {
+            findNavController().navigate(FolderListFragmentDirections.actionFolderListFragmentToFolderDetailFragment(it))
+        })
 
         return binding.root
 

@@ -20,6 +20,9 @@ interface QuizletDao {
     @Insert
     suspend fun insertTerms(termList : List<Term>)
 
+    @Insert
+    suspend fun insertFolder(folder: Folder)
+
     @Transaction
     @Query("select * from set_table where setid = :setId")
      fun getSetsAndTermsWithId(setId: Long) : LiveData<SetWithTerms>

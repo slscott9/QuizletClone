@@ -9,16 +9,23 @@ import kotlinx.coroutines.flow.Flow
 
 interface LocalDataSourceInterface {
 
+    //Insert folder, set, terms
+
     suspend fun insertSet(newSet: Set) : Long
 
     suspend fun insertTerms(termList : List<Term>)
 
-     fun getSetAndTermsWithId(setId: Long) : LiveData<SetWithTerms>
+    suspend fun insertFolder(folder: Folder)
 
+    //get sets, terms,
+
+     fun getSetAndTermsWithId(setId: Long) : LiveData<SetWithTerms>
 
     suspend fun getAllTermsWithSetId(setId: Long) : List<Term>
 
     suspend fun getSetWithId(setId: Long) : Set
+
+
 
 
     //one shot flow for all folders and sets

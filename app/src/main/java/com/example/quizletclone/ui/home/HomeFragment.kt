@@ -65,7 +65,7 @@ class HomeFragment : Fragment() {
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSetListFragment())
         }
 
-        binding.tvViewAllSets.setOnClickListener {
+        binding.tvViewAllFolders.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToFolderListFragment())
         }
     }

@@ -12,6 +12,8 @@ class LocalDataSource @Inject constructor(
     private val dao: QuizletDao
 ) : LocalDataSourceInterface {
 
+    //insert folder, set, terms
+
     override suspend fun insertSet(newSet: Set): Long {
         return dao.insertSet(newSet)
     }
@@ -19,6 +21,15 @@ class LocalDataSource @Inject constructor(
     override suspend fun insertTerms(termList: List<Term>) {
         dao.insertTerms(termList)
     }
+
+    override suspend fun insertFolder(folder: Folder) {
+        dao.insertFolder(folder)
+    }
+
+
+
+
+    //get set, folders, terms
 
     override  fun getSetAndTermsWithId(setId: Long): LiveData<SetWithTerms> {
         return dao.getSetsAndTermsWithId(setId)

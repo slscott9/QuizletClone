@@ -57,6 +57,11 @@ class RepoImpl @Inject constructor(
         localDataSource.insertTerms(termList)
     }
 
+    override suspend fun insertFolder(folder: Folder) {
+        localDataSource.insertFolder(folder)
+
+    }
+
 
 
 
@@ -71,6 +76,8 @@ class RepoImpl @Inject constructor(
             Resource.error("Check network connection", e.message)
         }
     }
+
+
 
     override  fun getSetAndTermsWithId(setId: Long): LiveData<SetWithTerms> {
         return localDataSource.getSetAndTermsWithId(setId)

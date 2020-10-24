@@ -24,6 +24,8 @@ interface RepoInterface {
 
     suspend fun sendSet(newSetRequest: NewSetRequest) : Resource<String>
 
+    suspend fun insertFolder(folder: Folder)
+
 
     //get sets and terms
      fun getSetAndTermsWithId(setId: Long) : LiveData<SetWithTerms>

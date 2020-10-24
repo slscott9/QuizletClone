@@ -22,7 +22,6 @@ class SetListFragment : Fragment() {
 
     private lateinit var binding: FragmentSetListBinding
     private val viewModel : SetListViewModel by viewModels()
-    private lateinit var navController: NavController
 
 
     override fun onCreateView(
@@ -39,12 +38,10 @@ class SetListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        navController = findNavController()
 
-//        setupBottomNav()
 
         val setListAdapter = SetListAdapter(SetListListener {
-//            findNavController().navigate(SetListFragmentDirections.actionSetListFragmentToSetDetailFragment(it))
+            findNavController().navigate(SetListFragmentDirections.actionSetListFragmentToSetDetailFragment(it))
         })
 
         viewModel.allSets.observe(viewLifecycleOwner){
@@ -60,31 +57,5 @@ class SetListFragment : Fragment() {
 
 
     }
-
-//    private fun setupBottomNav() {
-//        binding.setListFragBottomNav.setOnNavigationItemSelectedListener {
-//            when(it.itemId){
-//                R.id.bn_create_menu_item -> {
-//                    navController.navigate(R.id.bottomSheetFragment)
-//                    true
-//                }
-//                R.id.bn_search_menu_item -> {
-//                    navController.navigate(R.id.searchFragment)
-//                    true
-//                }
-//                R.id.bn_home_menu_item -> {
-//                    navController.navigate(R.id.homeFragment3)
-//                    true
-//                }
-//                R.id.bn_profile_menu_item -> {
-//                    navController.navigate(R.id.profileFragment)
-//                    true
-//                }
-//                else -> false
-//            }
-//        }
-//    }
-
-
 
 }
