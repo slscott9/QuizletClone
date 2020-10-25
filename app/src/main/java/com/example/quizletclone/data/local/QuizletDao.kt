@@ -15,36 +15,38 @@ import kotlinx.coroutines.flow.Flow
 interface QuizletDao {
 
     @Insert
-    suspend fun insertSet(set: Set) : Long
+    suspend fun insertSet(set: Set) : Long //tested
 
     @Insert
-    suspend fun insertTerms(termList : List<Term>)
+    suspend fun insertTerms(termList : List<Term>) //tested
 
     @Insert
     suspend fun insertFolder(folder: Folder)
 
+
+
     @Transaction
-    @Query("select * from set_table where setid = :setId")
+    @Query("select * from set_table where setid = :setId") //tested
      fun getSetsAndTermsWithId(setId: Long) : LiveData<SetWithTerms>
 
-    @Query("select * from term_table where setId = :setId")
+    @Query("select * from term_table where setId = :setId") //tested
     suspend fun getAllTermsWithSetId(setId: Long) : List<Term>
 
-    @Query("select  * from set_table where setId =:setId")
+    @Query("select  * from set_table where setId =:setId") //tested
     suspend fun getSetWithId(setId: Long) : Set
 
 
     //One shot flows
 
-    @Query("select * from set_table")
+    @Query("select * from set_table") //tested
     fun getAllSets() : Flow<List<Set>>
 
-    @Query("select * from folder_table")
+    @Query("select * from folder_table") //tested
     fun getAllFolders() : Flow<List<Folder>>
 
 
     //Search sets
-    @Query("select * from set_table where setName = :setName")
+    @Query("select * from set_table where setName = :setName") //tested
     suspend fun getSetsWithSearchParam(setName: String) : List<Set>
 
 
