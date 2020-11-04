@@ -16,7 +16,6 @@ import com.example.quizletclone.other.Status
 import com.example.quizletclone.ui.adapters.SetListAdapter
 import com.example.quizletclone.ui.adapters.SetListListener
 import com.example.quizletclone.ui.search.SearchViewModel
-import com.example.quizletclone.utils.hiltNavGraphViewModels
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 

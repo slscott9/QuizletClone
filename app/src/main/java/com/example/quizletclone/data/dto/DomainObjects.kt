@@ -34,3 +34,11 @@ data class DomainTerm(
 
 )
 
+data class FragmentTerm(
+    val question : String,
+    val answer: String
+)
+
+//fun FragmentTerm.asDatabaseModel() : List<Term> {
+//
+//}

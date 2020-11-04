@@ -1,5 +1,6 @@
 package com.example.quizletclone.ui.home
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,10 +14,12 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.quizletclone.R
 import com.example.quizletclone.databinding.FragmentHomeBinding
+import com.example.quizletclone.other.Constants
 import com.example.quizletclone.ui.adapters.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -27,6 +30,20 @@ class HomeFragment : Fragment() {
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var navController: NavController
 
+
+    @Inject
+    lateinit var sharedPref: SharedPreferences
+
+    private var currentEmail: String ? = null
+    private var currentPassword: String ? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+
+
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,6 +51,11 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
+
+        if(!isLoggedIn()){
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToLoginNavigation())
+        }
+
 
 
 
@@ -92,6 +114,22 @@ class HomeFragment : Fragment() {
 
         }
 
+    }
+
+
+
+    private fun isLoggedIn() : Boolean{
+        //default value NO_EMAIL AND NO_PASSWORD
+        //use return statement to check if user is logged in
+        currentEmail = sharedPref.getString(
+            Constants.KEY_LOGGED_IN_EMAIL,
+            Constants.NO_EMAIL
+        ) ?: Constants.NO_EMAIL
+        currentPassword = sharedPref.getString(
+            Constants.KEY_PASSWORD,
+            Constants.NO_PASSWORD
+        ) ?: Constants.NO_PASSWORD
+        return currentEmail != Constants.NO_EMAIL && currentPassword != Constants.NO_PASSWORD
     }
 
 

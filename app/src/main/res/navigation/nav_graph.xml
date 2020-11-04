@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/loginNavigation">
 
 
     <navigation android:id="@+id/loginNavigation"
@@ -46,6 +46,9 @@
         <action
             android:id="@+id/action_homeFragment_to_folderListFragment"
             app:destination="@id/folderListFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_loginNavigation"
+            app:destination="@id/loginNavigation" />
     </fragment>
     <dialog
         android:id="@+id/bottomSheetFragment"

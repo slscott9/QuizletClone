@@ -13,7 +13,7 @@ object Constants {
      solution is use our windows ipv4 address
   */
 
-    const val BASE_URL = "https://192.168.1.3:8085"
+    const val BASE_URL = "https://192.168.1.11:8082"
 
     const val ENCRYPTED_SHARED_PREF_NAME = "quizlet_encr_shared_pref"
 

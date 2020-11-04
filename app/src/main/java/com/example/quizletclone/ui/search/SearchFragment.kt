@@ -16,7 +16,6 @@ import com.example.quizletclone.R
 import com.example.quizletclone.databinding.FragmentSearchBinding
 import com.example.quizletclone.ui.adapters.SearchViewPagerAdapter
 import com.example.quizletclone.ui.home.BottomSheetFragment
-import com.example.quizletclone.utils.hiltNavGraphViewModels
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 

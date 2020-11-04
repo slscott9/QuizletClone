@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        Navigation.findNavController(this, R.id.navHostFragment).addOnDestinationChangedListener { controller, destination, arguments ->
+        Navigation.findNavController(this, R.id.navHostFragment).addOnDestinationChangedListener() { controller, destination, arguments ->
             when(destination.id){
 
                 R.id.homeFragment -> {

@@ -14,6 +14,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.quizletclone.R
+import com.example.quizletclone.data.dto.FragmentTerm
 import com.example.quizletclone.data.dto.NetworkSet
 import com.example.quizletclone.databinding.FragmentAddSetBinding
 import com.example.quizletclone.other.Status
@@ -26,7 +27,7 @@ class AddSetFragment : Fragment() {
 
     private lateinit var binding: FragmentAddSetBinding
     private val viewModel: AddSetViewModel by viewModels()
-    private val termList = ArrayList<Term>()
+    private val termList = ArrayList<FragmentTerm>()
     private val termLayoutList = ArrayList<View>()
     private lateinit var parentLayout: LinearLayout
 
@@ -62,10 +63,10 @@ class AddSetFragment : Fragment() {
                         Toast.makeText(requireActivity(), "Please enter all fields", Toast.LENGTH_SHORT).show()
                     }else{
                         getTerms()
-                        viewModel.insertSet(
-                            binding.etSetTitle.text.toString(),
-                            termList = termList
-                        )
+//                        viewModel.insertSet(
+//                            binding.etSetTitle.text.toString(),
+//                            termList = termList
+//                        )
                     }
                     true
                 }
@@ -109,7 +110,7 @@ class AddSetFragment : Fragment() {
 
                 Timber.i( it.etTermInput.text.toString(),
                     it.etDefinitionInput.text.toString())
-                termList.add(Term(
+                termList.add(FragmentTerm(
                     it.etTermInput.text.toString(),
                     it.etDefinitionInput.text.toString()
                 ))
@@ -124,10 +125,6 @@ class AddSetFragment : Fragment() {
 //        findNavController().navigate(AddSetFragmentDirections.actionAddSetFragmentToSetDetailFragment(setId), navOptions)
 //    }
 
-    data class Term(
-        val term: String,
-        val answer : String
-    )
 
 
 }

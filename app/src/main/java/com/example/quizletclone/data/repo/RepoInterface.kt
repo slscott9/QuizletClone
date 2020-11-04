@@ -17,14 +17,25 @@ interface RepoInterface {
 
     suspend fun register(email: String, password: String, userName: String): Resource<String>
 
+
+
+
     //insert sets and terms into local database
     suspend fun insertSet(newSet: Set) : Long
 
     suspend fun insertTerms(termList: List<Term>)
 
+    suspend fun insertFolder(folder: Folder)
+
+
+
+    //network calls
+
+    suspend fun addSet(set: Set, termList: List<Term>) : RepoImpl.SetInsertSuccess
+
     suspend fun sendSet(newSetRequest: NewSetRequest) : Resource<String>
 
-    suspend fun insertFolder(folder: Folder)
+
 
 
     //get sets and terms
@@ -33,6 +44,8 @@ interface RepoInterface {
     suspend fun getAllTermsWithSetId(setId: Long) : List<Term>
 
     suspend fun getSetWithId(setId: Long) : Set
+
+
 
 
     //One shot flow get all sets and folders
