@@ -84,7 +84,7 @@ class HomeFragment : Fragment() {
 
     private fun setupViewAllListeners() {
         binding.tvViewAllSets.setOnClickListener {
-            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSetListFragment())
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToTestFragmentAdd())
         }
 
         binding.tvViewAllFolders.setOnClickListener {

@@ -20,6 +20,8 @@ import com.example.quizletclone.other.Constants.KEY_LOGGED_IN_EMAIL
 import com.example.quizletclone.other.Constants.KEY_PASSWORD
 import com.example.quizletclone.other.Status
 import dagger.hilt.android.AndroidEntryPoint
+import okhttp3.internal.http.HttpMethod
+import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -34,7 +36,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
     @Inject
     lateinit var basicAuthInterceptor: BasicAuthInterceptor
 
-    private var currentEmail: String ? = null
+    private var currentUsername: String ? = null
     private var currentPassword: String ? = null
 
 
@@ -52,35 +54,40 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
         super.onViewCreated(view, savedInstanceState)
 
         if(isLoggedIn()){
-            authenticateAPI(currentEmail ?: "", currentPassword ?: "")
+            authenticateAPI(currentUsername ?: "", currentPassword ?: "")
             redirectLogin()
         }
 
         binding.btnLogin.setOnClickListener {
-            val email = binding.etEmail.text.toString()
+            val userName = binding.etUsername.text.toString()
             val password = binding.etPassword.text.toString()
 
-            currentEmail = email
+            currentUsername = userName
             currentPassword = password
-            viewModel.login(email, password)
+            viewModel.login(userName, password)
         }
 
         viewModel.loginStatus.observe(viewLifecycleOwner, Observer {
             it?.let {
                 when(it.status){
                     Status.SUCCESS -> {
-                        binding.loginProgressBar.visibility = View.GONE
-                        showSnackBar(it.data ?: "Successfully logged in")
 
-                        sharedPref.edit().putString(KEY_LOGGED_IN_EMAIL, currentEmail).apply()
+                        Timber.i("In success login")
+                        binding.loginProgressBar.visibility = View.GONE
+
+                        sharedPref.edit().putString(Constants.KEY_LOGGED_IN_USERNAME, currentUsername).apply()
                         sharedPref.edit().putString(KEY_PASSWORD, currentPassword).apply()
 
-                        authenticateAPI(currentEmail?: "" , currentPassword ?: "")
+                        authenticateAPI(currentUsername?: "" , currentPassword ?: "")
                         redirectLogin()
                     }
                     Status.ERROR -> {
                         binding.loginProgressBar.visibility = View.GONE
-                        showSnackBar(it.message ?: "Unknown error occurred")
+                        Timber.i(it.data.toString())
+
+
+                        showSnackBar(it.message.toString())
+//
                     }
                     Status.LOADING -> {
                         binding.loginProgressBar.visibility = View.VISIBLE
@@ -93,15 +100,15 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
     private fun isLoggedIn() : Boolean{
         //default value NO_EMAIL AND NO_PASSWORD
         //use return statement to check if user is logged in
-        currentEmail = sharedPref.getString(
-            Constants.KEY_LOGGED_IN_EMAIL,
-            Constants.NO_EMAIL
-        ) ?: Constants.NO_EMAIL
+        currentUsername = sharedPref.getString(
+            Constants.KEY_LOGGED_IN_USERNAME,
+            Constants.NO_USERNAME
+        ) ?: Constants.NO_USERNAME
         currentPassword = sharedPref.getString(
             Constants.KEY_PASSWORD,
             Constants.NO_PASSWORD
         ) ?: Constants.NO_PASSWORD
-        return currentEmail != Constants.NO_EMAIL && currentPassword != Constants.NO_PASSWORD
+        return currentUsername != Constants.NO_USERNAME && currentPassword != Constants.NO_PASSWORD
     }
 
 
@@ -109,12 +116,12 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
     private fun redirectLogin() {
 
         findNavController().navigate(
-            R.id.action_global_homeFragment
+            LoginFragmentDirections.actionLoginFragmentToHomeFragment()
         )
     }
 
-    private fun authenticateAPI(email: String, password: String) {
-        basicAuthInterceptor.email = email
+    private fun authenticateAPI(userName: String, password: String) {
+        basicAuthInterceptor.userName = userName
         basicAuthInterceptor.password = password
     }
 

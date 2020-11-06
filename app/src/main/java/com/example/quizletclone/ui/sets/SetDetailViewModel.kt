@@ -3,6 +3,8 @@ package com.example.quizletclone.ui.sets
 import android.content.SharedPreferences
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
+import com.example.quizletclone.data.dto.DomainSet
+import com.example.quizletclone.data.dto.asDomainModel
 import com.example.quizletclone.data.entities.Set
 import com.example.quizletclone.data.entities.Term
 import com.example.quizletclone.data.repo.RepoInterface
@@ -26,10 +28,10 @@ class SetDetailViewModel @ViewModelInject constructor(
 
     private val _set = setWithTerms.switchMap {
          liveData(Dispatchers.IO + viewModelScope.coroutineContext) {
-            emit(it.set)
+            emit(it.set.asDomainModel())
         }
     }
-    val set: LiveData<Set> = _set
+    val set: LiveData<DomainSet> = _set
 
     private val _termList = setWithTerms.switchMap {
         liveData(Dispatchers.IO + viewModelScope.coroutineContext) {

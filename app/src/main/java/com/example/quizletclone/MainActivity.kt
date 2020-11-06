@@ -29,46 +29,17 @@ class MainActivity : AppCompatActivity() {
         bottom_nav.setupWithNavController(navController)
 
 
-//        bottom_nav.setOnNavigationItemSelectedListener {
-//            when(it.itemId){
-//                R.id.create_item -> {
-//                    val bottomSheetFragment = BottomSheetFragment()
-//                    bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
-//                    true
-//
-//                }
-//
-//
-//                R.id.profie_item -> {
-//                    navController.navigate(R.id.profileFragment)
-//                    true
-//                }
-//                R.id.home_item -> {
-//                    navController.navigate(R.id.homeFragment)
-//                    true
-//                }
-//                else -> false
-//            }
-//        }
-
-
 
         Navigation.findNavController(this, R.id.navHostFragment).addOnDestinationChangedListener() { controller, destination, arguments ->
             when(destination.id){
 
                 R.id.homeFragment -> {
                     bottom_nav.visibility = View.VISIBLE
-
-
                 }
 
-//
-//                R.id.bottomSheetFragment -> {
-//                        val bottomSheetFragment = BottomSheetFragment()
-//                    bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
-//
-//                }
-
+                else -> {
+                    bottom_nav.visibility = View.GONE
+                }
             }
         }
     }

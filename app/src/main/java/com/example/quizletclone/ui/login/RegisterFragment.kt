@@ -63,10 +63,10 @@ class RegisterFragment : BaseFragment(R.layout.fragment_register) {
                 when (it.status) {
                     Status.SUCCESS -> {
                         binding.registerProgressBar.visibility = View.GONE
-                        showSnackBar(it.data ?: "Successfully registered!")
+                        showSnackBar(it.message ?: "Successfully registered!")
                         sharedPref.edit().putString(Constants.KEY_LOGGED_IN_EMAIL, binding.etRegisterEmail.text.toString()).apply()
                         sharedPref.edit().putString(Constants.KEY_PASSWORD, binding.etRegisterPassword.text.toString()).apply()
-                        sharedPref.edit().putString(Constants.USER_NAME, binding.etRegisterUsername.text.toString()).apply()
+                        sharedPref.edit().putString(Constants.KEY_LOGGED_IN_USERNAME, binding.etRegisterUsername.text.toString()).apply()
                         findNavController().navigate(R.id.action_global_homeFragment)
                     }
                     Status.ERROR -> {

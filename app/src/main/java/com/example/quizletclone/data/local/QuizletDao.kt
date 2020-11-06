@@ -50,5 +50,16 @@ interface QuizletDao {
     suspend fun getSetsWithSearchParam(setName: String) : List<Set>
 
 
+    //Get sets for network
+
+    @Query("select * from set_table where isSynced = :isSynced")
+    suspend fun getUnSyncedSets(isSynced : Boolean) : List<Set>
+
+    @Query("select * from term_table where isSynced = :isSynced and setId = :setId")
+    suspend fun getUnSyncedTermsWithSetId(isSynced: Boolean, setId: Long) : List<Term>
+
+
+
+
 }
 

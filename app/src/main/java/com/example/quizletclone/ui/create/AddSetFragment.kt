@@ -63,10 +63,10 @@ class AddSetFragment : Fragment() {
                         Toast.makeText(requireActivity(), "Please enter all fields", Toast.LENGTH_SHORT).show()
                     }else{
                         getTerms()
-//                        viewModel.insertSet(
-//                            binding.etSetTitle.text.toString(),
-//                            termList = termList
-//                        )
+                        viewModel.insertSet(
+                            binding.etSetTitle.text.toString(),
+                            termList = termList
+                        )
                     }
                     true
                 }
@@ -74,21 +74,10 @@ class AddSetFragment : Fragment() {
             }
         }
 
-        viewModel.addSetStatus.observe(viewLifecycleOwner){
-            when(it.status){
-                Status.SUCCESS -> {
-                    binding.addSetProgressBar.visibility = View.GONE
-                    Timber.i("set id passed is ${viewModel.setId.toString()}")
-//                    redirectToSetDetail(viewModel.setId)
+        viewModel.setId.observe(viewLifecycleOwner){
 
-                }
-                Status.LOADING -> {
-                    binding.addSetProgressBar.visibility = View.VISIBLE
-                }
-                Status.ERROR -> {
-                    Toast.makeText(requireActivity(), it.message, Toast.LENGTH_SHORT).show()
-                }
-            }
+            redirectToSetDetail(it)
+
         }
 
     }
@@ -118,12 +107,12 @@ class AddSetFragment : Fragment() {
         }
     }
 
-//    private fun redirectToSetDetail(setId: Long) {
-//        val navOptions = NavOptions.Builder()
-//            .setPopUpTo(R.id.addSetFragment, true)
-//            .build()
-//        findNavController().navigate(AddSetFragmentDirections.actionAddSetFragmentToSetDetailFragment(setId), navOptions)
-//    }
+    private fun redirectToSetDetail(setId: Long) {
+        val navOptions = NavOptions.Builder()
+            .setPopUpTo(R.id.addSetFragment, true)
+            .build()
+        findNavController().navigate(AddSetFragmentDirections.actionAddSetFragmentToSetDetailFragment(setId), navOptions)
+    }
 
 
 

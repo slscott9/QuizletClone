@@ -12,7 +12,7 @@ class BasicAuthInterceptor : Interceptor{
         Each interceptor modify requests we make
      */
 
-    var email: String? = null
+    var userName: String? = null
     var password: String? = null
 
 
@@ -31,7 +31,7 @@ class BasicAuthInterceptor : Interceptor{
         //If peter makes request he must be Authorized and Athenticated
 
         val authenticatedRequest = request.newBuilder()
-            .header("Authorization", Credentials.basic(email ?: "", password ?: ""))
+            .header("Authorization", Credentials.basic(userName ?: "", password ?: ""))
             .build()
         return chain.proceed(authenticatedRequest)
     }

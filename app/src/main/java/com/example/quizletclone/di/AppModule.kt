@@ -14,6 +14,7 @@ import com.example.quizletclone.data.remote.BasicAuthInterceptor
 import com.example.quizletclone.data.remote.service.QuizletApi
 import com.example.quizletclone.data.remote.service.RemoteDataSourceInterface
 import com.example.quizletclone.data.remote.service.RemoteDataSource
+import com.example.quizletclone.data.remote.service.ResponseHandler
 import com.example.quizletclone.data.repo.RepoInterface
 import com.example.quizletclone.data.repo.RepoImpl
 import com.example.quizletclone.other.Constants.BASE_URL
@@ -52,11 +53,15 @@ object AppModule {
             .fallbackToDestructiveMigration()
             .build()
 
+    @Singleton
+    @Provides
+    fun provideResponseHandler() = ResponseHandler()
+
     //return RepoInterface for testing
     @Singleton
     @Provides
-    fun provideRepo(localDataSource : LocalDataSourceInterface, service: RemoteDataSourceInterface, context: Application) : RepoInterface =
-        RepoImpl(localDataSource, service, context)
+    fun provideRepo(responseHandler: ResponseHandler, localDataSource : LocalDataSourceInterface, service: RemoteDataSourceInterface, context: Application) : RepoInterface =
+        RepoImpl(responseHandler, localDataSource, service, context)
 
     @Singleton
     @Provides
@@ -110,7 +115,11 @@ object AppModule {
     @Singleton
     @Provides
     fun provideQuizletApi(okHttpClient: OkHttpClient.Builder, basicAuthInterceptor: BasicAuthInterceptor): QuizletApi {
+
+        val loggingInterceptor = HttpLoggingInterceptor()
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
         val client = okHttpClient
+            .addInterceptor(loggingInterceptor)
             .addInterceptor(basicAuthInterceptor)
             .build()
 

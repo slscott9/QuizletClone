@@ -1,7 +1,9 @@
 package com.example.quizletclone.data.entities
 
+import android.icu.text.CaseMap
 import androidx.room.*
 import com.example.quizletclone.data.dto.*
+import com.example.quizletclone.data.dto.add.AddTerm
 import java.util.*
 
 @Entity(tableName = "user_table")
@@ -23,7 +25,7 @@ data class Folder(
     val userEmail: String,
     val userName: String,
     val description: String?,
-    val timeStamp: Long
+    val isSynced: Boolean
 )
 
 data class FolderwithSets(
@@ -46,8 +48,8 @@ data class Set(
     val folderId: Long?,
     val setName : String,
     val userEmail: String,
-    val termCount: String = "",
-    val timeStamp: Long
+    val termCount: Int,
+    val isSynced: Boolean
 
 )
 
@@ -74,7 +76,8 @@ data class Term(
     val setId: Long,
     val question: String,
     val answer: String,
-    val timeStamp: Long
+    val isSynced: Boolean,
+    val userEmail: String
 
 )
 
@@ -100,7 +103,8 @@ fun List<Set>.asDomainSet() : List<DomainSet> {
             folderId = it.folderId,
             userEmail = it.userEmail,
             setName = it.setName,
-            timeStamp= it.timeStamp
+            isSynced = it.isSynced,
+            termCount = it.termCount.toString()
         )
     }
 }
@@ -114,7 +118,7 @@ fun List<Folder>.asDomainFolder() : List<DomainFolder> {
             userEmail = it.userEmail,
             userName = it.userName,
             description = it.description,
-            timeStamp= it.timeStamp
+            isSynced = it.isSynced
         )
     }
 }
@@ -127,7 +131,7 @@ fun FolderContainer.asDomainModel() : List<DomainFolder>{
             userEmail = it.userEmail,
             userName = it.userName,
             description = it.description,
-             timeStamp= it.timeStamp
+            isSynced = it.isSynced
 
         )
     }
@@ -140,7 +144,8 @@ fun SetContainer.asDomainModel() : List<DomainSet>{
             folderId = it.folderId,
             userEmail = it.userEmail,
             setName = it.setName,
-            timeStamp= it.timeStamp
+            isSynced = it.isSynced,
+            termCount = it.termCount.toString()
 
         )
     }
@@ -153,7 +158,7 @@ fun TermContainer.asDomainModel() : List<DomainTerm> {
             termId = it.termId,
             term = it.question,
             answer = it.answer,
-            timeStamp= it.timeStamp
+            isSynced = it.isSynced
 
         )
     }
@@ -164,12 +169,12 @@ fun TermContainer.asDomainModel() : List<DomainTerm> {
 fun FolderContainer.asNetworkModels() : List<NetworkFolder>{
     return folderList.map{
         NetworkFolder(
-            name = it.name,
+            folderName = it.name,
             folderId = it.folderId,
             userEmail = it.userEmail,
             userName = it.userName,
             description = it.description,
-            timeStamp= it.timeStamp
+            isSynced = it.isSynced
         )
     }
 }
@@ -182,7 +187,7 @@ fun SetContainer.asNetworkModels() : List<NetworkSet>{
             userEmail = it.userEmail,
             setName = it.setName,
             termCount = it.termCount.toInt(),
-            timeStamp= it.timeStamp
+            isSynced = it.isSynced
 
         )
     }
@@ -195,7 +200,8 @@ fun TermContainer.asNetworkModels() : List<NetworkTerm> {
             termId = it.termId,
             term = it.question,
             answer = it.answer,
-            timeStamp= it.timeStamp
+            isSynced = it.isSynced,
+            userEmail = it.userEmail
 
         )
     }
@@ -208,7 +214,8 @@ fun List<Term>.asNetworkTerms() : List<NetworkTerm> {
             setId = it.setId,
             term = it.question,
             answer = it.answer,
-            timeStamp = it.timeStamp
+            isSynced = it.isSynced,
+            userEmail = it.userEmail
         )
     }
 }
@@ -220,8 +227,10 @@ fun Set.asNetworkSet() : NetworkSet {
         userEmail = userEmail,
         setName = setName,
         termCount = termCount.toInt(),
-        timeStamp =  timeStamp
+        isSynced = isSynced
     )
 }
+
+
 
 

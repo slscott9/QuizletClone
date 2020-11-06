@@ -40,6 +40,7 @@ class SetDetailFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_set_detail, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewModel = viewModel
 
         return binding.root
     }
@@ -48,7 +49,6 @@ class SetDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val termListAdapter = TermListAdapter()
-        binding.viewModel = viewModel
 
         setUpToolBarWithNav()
 

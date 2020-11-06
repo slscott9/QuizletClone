@@ -1,6 +1,7 @@
 package com.example.quizletclone.data.local
 
 import androidx.lifecycle.LiveData
+import androidx.room.Query
 import com.example.quizletclone.data.entities.Folder
 import com.example.quizletclone.data.entities.Set
 import com.example.quizletclone.data.entities.SetWithTerms
@@ -38,6 +39,9 @@ interface LocalDataSourceInterface {
     suspend fun getSetsWithSearchParam(setName: String) : List<Set>
 
 
+    suspend fun getUnSyncedSets(isSynced : Boolean) : List<Set>
+
+    suspend fun getUnSyncedTermsWithSetId(isSynced: Boolean, setId: Long) : List<Term>
 
 
 }

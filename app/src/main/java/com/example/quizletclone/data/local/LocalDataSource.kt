@@ -51,7 +51,18 @@ class LocalDataSource @Inject constructor(
         return dao.getAllFolders()
     }
 
+
+
     override suspend fun getSetsWithSearchParam(setName: String): List<Set> {
         return dao.getSetsWithSearchParam(setName)
+    }
+
+
+    override suspend fun getUnSyncedSets(isSynced: Boolean): List<Set> {
+        return dao.getUnSyncedSets(isSynced)
+    }
+
+    override suspend fun getUnSyncedTermsWithSetId(isSynced: Boolean, setId: Long): List<Term> {
+        return dao.getUnSyncedTermsWithSetId(isSynced, setId)
     }
 }

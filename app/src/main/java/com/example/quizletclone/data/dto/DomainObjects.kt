@@ -11,7 +11,7 @@ data class DomainFolder(
     val userEmail: String,
     val userName: String,
     val description: String?,
-    val timeStamp: Long
+    val isSynced: Boolean
 )
 
 data class DomainSet(
@@ -19,8 +19,8 @@ data class DomainSet(
     val folderId: Long?,
     val userEmail: String,
     val setName: String,
-    val termCount: Int = 0,
-    val timeStamp: Long
+    val termCount: String,
+    val isSynced: Boolean
 
 )
 
@@ -30,7 +30,7 @@ data class DomainTerm(
     val setId: Long,
     val term: String,
     val answer: String,
-    val timeStamp: Long
+    val isSynced: Boolean
 
 )
 
@@ -39,6 +39,25 @@ data class FragmentTerm(
     val answer: String
 )
 
-//fun FragmentTerm.asDatabaseModel() : List<Term> {
-//
-//}
+fun Set.asDomainModel() : DomainSet {
+    return DomainSet(
+        setId = setId,
+        folderId = folderId,
+        userEmail = userEmail,
+        setName = setName,
+        termCount = termCount.toString(),
+        isSynced = isSynced
+    )
+}
+
+fun List<FragmentTerm>.asDatabaseModel(setId: Long, userEmail: String) : List<Term> {
+    return map {
+        Term(
+            setId = setId,
+            question = it.question,
+            answer = it.answer,
+            isSynced = false,
+            userEmail = userEmail
+        )
+    }
+}

@@ -3,8 +3,14 @@ package com.example.quizletclone
 import android.app.Application
 import android.content.res.Configuration
 import androidx.hilt.work.HiltWorkerFactory
+import androidx.work.Constraints
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
+import com.example.work.RefreshWorker
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 
@@ -18,6 +24,7 @@ class QuizletApplication : Application(), androidx.work.Configuration.Provider{
         super.onCreate()
 
         Timber.plant(Timber.DebugTree())
+        setupRecurringWork()
     }
 
     override fun getWorkManagerConfiguration(): androidx.work.Configuration {
@@ -25,5 +32,21 @@ class QuizletApplication : Application(), androidx.work.Configuration.Provider{
             .setMinimumLoggingLevel(android.util.Log.INFO)
             .setWorkerFactory(workerFactory)
             .build()
+    }
+
+    private fun setupRecurringWork(){
+        val constraints = Constraints.Builder()
+            .setRequiresCharging(true)
+            .build()
+
+        val repeatingRequest = PeriodicWorkRequestBuilder<RefreshWorker>(15, TimeUnit.MINUTES)
+            .setConstraints(constraints)
+            .build()
+
+        WorkManager.getInstance(this).enqueueUniquePeriodicWork(
+            RefreshWorker.REFRESH_WORKER,
+            ExistingPeriodicWorkPolicy.REPLACE,
+            repeatingRequest
+        )
     }
 }

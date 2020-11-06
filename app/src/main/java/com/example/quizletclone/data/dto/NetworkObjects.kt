@@ -12,16 +12,16 @@ data class NetworkSet(
     val userEmail: String,
     val setName: String,
     val termCount: Int = 0,
-    val timeStamp: Long
+    val isSynced: Boolean
 )
 
 data class NetworkFolder(
-    val name: String,
+    val folderName: String,
     val folderId: Long,
     val userEmail: String,
     val userName: String,
     val description: String?,
-    val timeStamp: Long
+    val isSynced: Boolean
 
 )
 
@@ -30,9 +30,11 @@ data class NetworkTerm(
     val setId: Long,
     val term: String,
     val answer: String,
-    val timeStamp: Long
+    val isSynced: Boolean,
+    val userEmail: String
 
 )
+
 
 data class NetworkTermContainer(
     val termList: List<NetworkTerm>
@@ -50,12 +52,12 @@ data class NetworkFolderContainer(
 fun NetworkFolderContainer.asDatabaseModels() : List<Folder>{
     return folderList.map{
         Folder(
-            name = it.name,
+            name = it.folderName,
             folderId = it.folderId,
             userEmail = it.userEmail,
             userName = it.userName,
             description = it.description,
-            timeStamp= it.timeStamp
+            isSynced = it.isSynced
 
         )
     }
@@ -68,7 +70,8 @@ fun NetworkSetContainer.asDatabaseModels() : List<Set>{
             folderId = it.folderId,
             userEmail = it.userEmail,
             setName = it.setName,
-            timeStamp= it.timeStamp
+            isSynced = it.isSynced,
+            termCount = it.termCount
 
         )
     }
@@ -81,7 +84,8 @@ fun NetworkTermContainer.asDatabaseModels() : List<Term> {
             termId = it.termId,
             question = it.term,
             answer = it.answer,
-            timeStamp= it.timeStamp
+            isSynced = it.isSynced,
+            userEmail = it.userEmail
 
         )
     }

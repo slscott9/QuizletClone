@@ -9,7 +9,7 @@ import com.example.quizletclone.data.entities.Set
 import com.example.quizletclone.data.entities.Term
 import com.example.quizletclone.data.entities.User
 
-@Database(entities = [User::class, Folder::class, Set::class, Term::class], version = 14)
+@Database(entities = [User::class, Folder::class, Set::class, Term::class], version = 15)
 abstract class QuizletDatabase : RoomDatabase() {
 
     abstract fun dao() : QuizletDao

@@ -37,8 +37,6 @@ class BottomSheetFragment() : BottomSheetDialogFragment(){
         binding.lifecycleOwner = viewLifecycleOwner
 
 
-
-
         return binding.root
     }
 
@@ -46,10 +44,10 @@ class BottomSheetFragment() : BottomSheetDialogFragment(){
         super.onViewCreated(view, savedInstanceState)
 
 
-//        binding.tvCreateSet.setOnClickListener {
-//            findNavController().navigate(R.id.addSetFragment)
-//            dismiss()
-//        }
+        binding.tvCreateSet.setOnClickListener {
+            findNavController().navigate(BottomSheetFragmentDirections.actionBottomSheetFragmentToAddSetFragment())
+            dismiss()
+        }
 
 
 

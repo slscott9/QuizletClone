@@ -41,7 +41,7 @@ class FolderFragmentViewModel @ViewModelInject constructor(
                     userEmail = userEmail,
                     userName = userName,
                     description = folderDescription,
-                    timeStamp =  Date.from(Instant.now()).time
+                    isSynced = false
                 )
             )
         }

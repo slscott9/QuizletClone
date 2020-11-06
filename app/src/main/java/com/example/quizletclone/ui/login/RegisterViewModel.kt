@@ -4,9 +4,11 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.quizletclone.data.remote.responses.ServerResponse
 import com.example.quizletclone.data.repo.RepoInterface
 import com.example.quizletclone.other.Resource
 import kotlinx.coroutines.launch
+import okhttp3.ResponseBody
 
 class RegisterViewModel @ViewModelInject constructor(
     private val repo: RepoInterface
@@ -29,7 +31,7 @@ class RegisterViewModel @ViewModelInject constructor(
             validation is good? then post value of what the server returns
          */
         viewModelScope.launch {
-            val result = repo.register(email, password, userName)
+            val result = repo.register(email = email, password = password, userName = userName)
             _registerStatus.postValue(result)
         }
     }

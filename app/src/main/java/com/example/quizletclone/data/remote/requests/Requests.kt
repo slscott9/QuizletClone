@@ -2,13 +2,15 @@ package com.example.quizletclone.data.remote.requests
 
 import com.example.quizletclone.data.dto.NetworkSet
 import com.example.quizletclone.data.dto.NetworkTerm
+import com.example.quizletclone.data.entities.Set
 
 data class AccountRequest(
-    val email: String,
+    val email: String?,
     val password: String,
     val userName: String
 
 )
+
 
 
 /*
@@ -20,6 +22,12 @@ data class AccountRequest(
 data class NewSetRequest(
     val set: NetworkSet,
     val termList : List<NetworkTerm>
+)
+
+data class AddFolderRequest(
+
+    val userSets: List<Set>
+
 )
 
 

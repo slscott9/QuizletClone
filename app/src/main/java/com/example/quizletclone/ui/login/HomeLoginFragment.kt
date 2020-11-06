@@ -53,7 +53,7 @@ class HomeLoginFragment : BaseFragment(R.layout.fragment_home_login) {
         if(isLoggedIn()){
             authenticateAPI(currentEmail ?: "", currentPassword ?: "")
             findNavController().navigate(
-                R.id.action_global_homeFragment
+               HomeLoginFragmentDirections.actionHomeLoginFragmentToHomeFragment()
             )
         }
 
@@ -89,8 +89,8 @@ class HomeLoginFragment : BaseFragment(R.layout.fragment_home_login) {
 
 
 
-    private fun authenticateAPI(email: String, password: String) {
-        basicAuthInterceptor.email = email
+    private fun authenticateAPI(userName: String, password: String) {
+        basicAuthInterceptor.userName = userName
         basicAuthInterceptor.password = password
     }
 

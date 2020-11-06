@@ -20,6 +20,8 @@ object Constants {
     const val USER_NAME = "USER_NAME"
     const val NO_USERNAME = "NO_USER_NAME"
 
+
+    const val KEY_LOGGED_IN_USERNAME = "KEY_LOGGED_IN_USERNAME"
     const val KEY_LOGGED_IN_EMAIL = "KEY_LOGGED_IN_EMAIL"
     const val KEY_PASSWORD = "KEY_PASSWORD"
     const val NO_EMAIL = "NO_EMAIL"
