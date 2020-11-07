@@ -1,10 +1,7 @@
 package com.example.quizletclone.data.local
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Transaction
+import androidx.room.*
 import com.example.quizletclone.data.entities.Folder
 import com.example.quizletclone.data.entities.Set
 import com.example.quizletclone.data.entities.SetWithTerms
@@ -57,6 +54,27 @@ interface QuizletDao {
 
     @Query("select * from term_table where isSynced = :isSynced and setId = :setId")
     suspend fun getUnSyncedTermsWithSetId(isSynced: Boolean, setId: Long) : List<Term>
+
+
+
+    @Query("delete from folder_table")
+    suspend fun deleteAllFolders()
+
+    @Query("delete from set_table")
+    suspend fun deleteAllSets()
+
+
+    @Transaction
+    @Insert
+    suspend fun insertSetWithTerms(setWithTerms: List<SetWithTerms>) { //need to test this not working
+
+        setWithTerms.forEach {
+            insertSet(it.set)
+            insertTerms(it.termList)
+        }
+    }
+
+
 
 
 

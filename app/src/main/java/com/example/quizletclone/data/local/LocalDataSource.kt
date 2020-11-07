@@ -65,4 +65,19 @@ class LocalDataSource @Inject constructor(
     override suspend fun getUnSyncedTermsWithSetId(isSynced: Boolean, setId: Long): List<Term> {
         return dao.getUnSyncedTermsWithSetId(isSynced, setId)
     }
+
+
+    override suspend fun deleteAllFolders() {
+        dao.deleteAllFolders()
+    }
+
+    override suspend fun deleteAllSets() {
+        dao.deleteAllSets()
+    }
+
+
+
+    override suspend fun insertSetWithTerms(setWithTerms: List<SetWithTerms>) {
+        dao.insertSetWithTerms(setWithTerms)
+    }
 }

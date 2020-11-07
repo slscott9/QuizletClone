@@ -52,6 +52,10 @@ fun List<FolderwithSets>.asAddFolderContainer(addSetContainerList: List<AddSetCo
 
 
 
+
+
+
+
 fun List<Set>.asAddSets() : List<AddSet>{
     return map {
         AddSet(
@@ -85,3 +89,6 @@ fun List<Term>.asTermContainer() : List<AddTerm> {
         )
     }
 }
+
+
+

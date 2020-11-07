@@ -17,6 +17,7 @@ import com.example.quizletclone.other.Constants
 import com.example.quizletclone.other.Status
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_register.*
+import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -62,12 +63,16 @@ class RegisterFragment : BaseFragment(R.layout.fragment_register) {
             it?.let {
                 when (it.status) {
                     Status.SUCCESS -> {
+                        Timber.i("Success register")
                         binding.registerProgressBar.visibility = View.GONE
                         showSnackBar(it.message ?: "Successfully registered!")
+                        Timber.i(" Register email is ${binding.etRegisterEmail.text.toString()}")
+                        Timber.i( "Register password is ${binding.etRegisterPassword.text.toString()}")
+                        Timber.i(" User name is ${binding.etRegisterUsername.text.toString()}")
                         sharedPref.edit().putString(Constants.KEY_LOGGED_IN_EMAIL, binding.etRegisterEmail.text.toString()).apply()
                         sharedPref.edit().putString(Constants.KEY_PASSWORD, binding.etRegisterPassword.text.toString()).apply()
                         sharedPref.edit().putString(Constants.KEY_LOGGED_IN_USERNAME, binding.etRegisterUsername.text.toString()).apply()
-                        findNavController().navigate(R.id.action_global_homeFragment)
+                        findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment(binding.etRegisterEmail.text.toString()))
                     }
                     Status.ERROR -> {
                         binding.registerProgressBar.visibility = View.GONE

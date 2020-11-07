@@ -44,4 +44,10 @@ interface LocalDataSourceInterface {
     suspend fun getUnSyncedTermsWithSetId(isSynced: Boolean, setId: Long) : List<Term>
 
 
+    suspend fun deleteAllFolders()
+
+    suspend fun deleteAllSets()
+
+    suspend fun insertSetWithTerms(setWithTerms: List<SetWithTerms>)
+
 }

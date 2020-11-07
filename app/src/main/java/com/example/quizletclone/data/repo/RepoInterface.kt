@@ -3,6 +3,7 @@ package com.example.quizletclone.data.repo
 import androidx.lifecycle.LiveData
 import com.example.quizletclone.data.dto.NetworkSet
 import com.example.quizletclone.data.dto.NetworkTerm
+import com.example.quizletclone.data.dto.UserData
 import com.example.quizletclone.data.dto.add.AddSetContainer
 import com.example.quizletclone.data.entities.Folder
 import com.example.quizletclone.data.entities.Set
@@ -64,6 +65,16 @@ interface RepoInterface {
     suspend fun getUnSyncedTermsWithSetId(isSynced: Boolean, setId: Long): List<Term>
 
     suspend fun sendSetsToNetwork(setContainer: List<AddSetContainer>, userEmail: String) : ServerResponse
+
+
+    suspend fun deleteAllFolders()
+
+    suspend fun deleteAllSets()
+
+    suspend fun getUserData(userName: String) : UserData
+
+
+    suspend fun insertSetWithTerms(setWithTerms : List<SetWithTerms>)
 
 
 

@@ -129,6 +129,7 @@ class HomeFragment : Fragment() {
             Constants.KEY_PASSWORD,
             Constants.NO_PASSWORD
         ) ?: Constants.NO_PASSWORD
+
         return currentEmail != Constants.NO_EMAIL && currentPassword != Constants.NO_PASSWORD
     }
 

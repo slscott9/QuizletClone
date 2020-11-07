@@ -30,7 +30,6 @@ data class DomainTerm(
     val setId: Long,
     val term: String,
     val answer: String,
-    val isSynced: Boolean
 
 )
 
@@ -56,8 +55,8 @@ fun List<FragmentTerm>.asDatabaseModel(setId: Long, userEmail: String) : List<Te
             setId = setId,
             question = it.question,
             answer = it.answer,
-            isSynced = false,
-            userEmail = userEmail
+            userEmail = userEmail,
+            isSynced = true
         )
     }
 }

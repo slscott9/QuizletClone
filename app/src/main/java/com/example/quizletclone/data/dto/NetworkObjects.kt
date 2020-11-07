@@ -1,92 +1,69 @@
 package com.example.quizletclone.data.dto
 
+import androidx.lifecycle.Transformations.map
 import com.example.quizletclone.data.entities.*
 import com.example.quizletclone.data.entities.FolderContainer
 import com.example.quizletclone.data.entities.Set
 import com.example.quizletclone.data.entities.SetContainer
 import com.example.quizletclone.data.entities.TermContainer
 
-data class NetworkSet(
-    val setId: Long,
-    val folderId: Long?,
-    val userEmail: String,
-    val setName: String,
-    val termCount: Int = 0,
-    val isSynced: Boolean
+
+
+data class UserData(
+    val userSets: List<NetworkSet>,
+    val folders: List<NetworkSet>?
+
 )
 
-data class NetworkFolder(
-    val folderName: String,
-    val folderId: Long,
+data class NetworkSet(
+    val id: Long,
+    val setName: String,
     val userEmail: String,
-    val userName: String,
-    val description: String?,
-    val isSynced: Boolean
-
+    val termCount:Int,
+    val isSynced :Boolean,
+    val terms :List<NetworkTerm>
 )
 
 data class NetworkTerm(
-    val termId: Long,
-    val setId: Long,
-    val term: String,
+    val id: Long,
+    val parentSetId: Long,
+    val question : String,
     val answer: String,
-    val isSynced: Boolean,
-    val userEmail: String
-
+    val userEmail: String,
+    val isSynced: Boolean
 )
 
 
-data class NetworkTermContainer(
-    val termList: List<NetworkTerm>
-)
 
-data class NetworkSetContainer(
-    val setList : List<NetworkSet>
-)
-
-data class NetworkFolderContainer(
-    val folderList : List<NetworkFolder>
-)
-
-
-fun NetworkFolderContainer.asDatabaseModels() : List<Folder>{
-    return folderList.map{
-        Folder(
-            name = it.folderName,
-            folderId = it.folderId,
-            userEmail = it.userEmail,
-            userName = it.userName,
-            description = it.description,
-            isSynced = it.isSynced
-
-        )
-    }
-}
-
-fun NetworkSetContainer.asDatabaseModels() : List<Set>{
-    return setList.map{
-        Set(
-            setId = it.setId,
-            folderId = it.folderId,
-            userEmail = it.userEmail,
-            setName = it.setName,
-            isSynced = it.isSynced,
-            termCount = it.termCount
-
-        )
-    }
-}
-
-fun NetworkTermContainer.asDatabaseModels() : List<Term> {
-    return termList.map {
+fun List<NetworkTerm>.asDatabaseModels(parentSetId: Long) : List<Term> {
+    return map {
         Term(
-            setId = it.setId,
-            termId = it.termId,
-            question = it.term,
+            termId = it.id,
+            setId = parentSetId,
+            question = it.question,
             answer = it.answer,
-            isSynced = it.isSynced,
-            userEmail = it.userEmail
+            userEmail = it.userEmail,
+            isSynced = it.isSynced
+        )
+    }
+}
 
+fun NetworkSet.asDatabaseModel() : Set {
+    return Set(
+        setId = id,
+        folderId = null,
+        setName = setName,
+        userEmail = userEmail,
+        termCount = termCount,
+        isSynced = isSynced
+    )
+}
+
+fun List<NetworkSet>.asSetWithTerms() : List<SetWithTerms>{
+    return map {
+        SetWithTerms(
+            set = it.asDatabaseModel(),
+            termList = it.terms.asDatabaseModels(it.id)
         )
     }
 }

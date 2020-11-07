@@ -1,5 +1,6 @@
 package com.example.quizletclone.data.remote.service
 
+import com.example.quizletclone.data.dto.UserData
 import com.example.quizletclone.data.dto.add.AddSetContainer
 import com.example.quizletclone.data.entities.SetContainer
 import com.example.quizletclone.data.remote.SafeApiRequest
@@ -29,5 +30,9 @@ class RemoteDataSource @Inject constructor(
     ): ServerResponse {
         return quizletApi.addSetTerms(setContainer, userEmail)
 
+    }
+
+    override suspend fun getUserData(userEmail: String): UserData {
+        return quizletApi.getUserData(userEmail)
     }
 }

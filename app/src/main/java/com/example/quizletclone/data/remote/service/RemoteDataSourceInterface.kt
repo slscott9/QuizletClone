@@ -1,5 +1,6 @@
 package com.example.quizletclone.data.remote.service
 
+import com.example.quizletclone.data.dto.UserData
 import com.example.quizletclone.data.dto.add.AddSetContainer
 import com.example.quizletclone.data.entities.SetContainer
 import com.example.quizletclone.data.remote.requests.AccountRequest
@@ -17,6 +18,8 @@ interface RemoteDataSourceInterface {
     suspend fun login( loginRequest: AccountRequest): Response<ResponseBody>
 
     suspend fun addSetAndTerms(setContainer: List<AddSetContainer>, userEmail: String) : ServerResponse
+
+    suspend fun getUserData(userEmail: String) : UserData
 
 
 

@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import com.example.quizletclone.data.dto.NetworkSet
 import com.example.quizletclone.data.dto.NetworkTerm
+import com.example.quizletclone.data.dto.UserData
 import com.example.quizletclone.data.dto.add.AddSetContainer
 import com.example.quizletclone.data.entities.*
 import com.example.quizletclone.data.entities.Set
@@ -152,5 +153,21 @@ class RepoImpl @Inject constructor(
         userEmail: String
     ): ServerResponse {
         return remoteDataSource.addSetAndTerms(setContainer, userEmail)
+    }
+
+    override suspend fun deleteAllFolders() {
+        localDataSource.deleteAllFolders()
+    }
+
+    override suspend fun deleteAllSets() {
+        localDataSource.deleteAllSets()
+    }
+
+    override suspend fun getUserData(userName: String): UserData {
+        return remoteDataSource.getUserData(userName)
+    }
+
+    override suspend fun insertSetWithTerms(setWithTerms: List<SetWithTerms>) {
+        localDataSource.insertSetWithTerms(setWithTerms)
     }
 }

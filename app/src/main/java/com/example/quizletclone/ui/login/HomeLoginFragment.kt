@@ -17,6 +17,7 @@ import com.example.quizletclone.other.Constants
 import com.example.quizletclone.ui.adapters.ViewPagerAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_home_login.*
+import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -65,7 +66,7 @@ class HomeLoginFragment : BaseFragment(R.layout.fragment_home_login) {
         }
 
         binding.tvLogin.setOnClickListener {
-            findNavController().navigate(HomeLoginFragmentDirections.actionHomeLoginFragmentToLoginFragment())
+            findNavController().navigate(HomeLoginFragmentDirections.actionHomeLoginFragmentToLoginFragment(null))
         }
 
 

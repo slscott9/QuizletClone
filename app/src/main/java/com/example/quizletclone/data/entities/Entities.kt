@@ -76,8 +76,8 @@ data class Term(
     val setId: Long,
     val question: String,
     val answer: String,
-    val isSynced: Boolean,
-    val userEmail: String
+    val userEmail: String,
+    val isSynced: Boolean
 
 )
 
@@ -158,7 +158,6 @@ fun TermContainer.asDomainModel() : List<DomainTerm> {
             termId = it.termId,
             term = it.question,
             answer = it.answer,
-            isSynced = it.isSynced
 
         )
     }
@@ -166,70 +165,6 @@ fun TermContainer.asDomainModel() : List<DomainTerm> {
 
 
 
-fun FolderContainer.asNetworkModels() : List<NetworkFolder>{
-    return folderList.map{
-        NetworkFolder(
-            folderName = it.name,
-            folderId = it.folderId,
-            userEmail = it.userEmail,
-            userName = it.userName,
-            description = it.description,
-            isSynced = it.isSynced
-        )
-    }
-}
-
-fun SetContainer.asNetworkModels() : List<NetworkSet>{
-    return setList.map{
-        NetworkSet(
-            setId = it.setId,
-            folderId = it.folderId,
-            userEmail = it.userEmail,
-            setName = it.setName,
-            termCount = it.termCount.toInt(),
-            isSynced = it.isSynced
-
-        )
-    }
-}
-
-fun TermContainer.asNetworkModels() : List<NetworkTerm> {
-    return termList.map {
-        NetworkTerm(
-            setId = it.termId,
-            termId = it.termId,
-            term = it.question,
-            answer = it.answer,
-            isSynced = it.isSynced,
-            userEmail = it.userEmail
-
-        )
-    }
-}
-
-fun List<Term>.asNetworkTerms() : List<NetworkTerm> {
-    return map {
-        NetworkTerm(
-            termId = it.termId,
-            setId = it.setId,
-            term = it.question,
-            answer = it.answer,
-            isSynced = it.isSynced,
-            userEmail = it.userEmail
-        )
-    }
-}
-
-fun Set.asNetworkSet() : NetworkSet {
-    return NetworkSet(
-        setId = setId,
-        folderId = folderId,
-        userEmail = userEmail,
-        setName = setName,
-        termCount = termCount.toInt(),
-        isSynced = isSynced
-    )
-}
 
 
 

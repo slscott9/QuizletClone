@@ -11,13 +11,17 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.quizletclone.BaseFragment
 import com.example.quizletclone.R
 import com.example.quizletclone.data.remote.BasicAuthInterceptor
 import com.example.quizletclone.databinding.FragmentLoginBinding
 import com.example.quizletclone.other.Constants
 import com.example.quizletclone.other.Constants.KEY_LOGGED_IN_EMAIL
+import com.example.quizletclone.other.Constants.KEY_LOGGED_IN_USERNAME
 import com.example.quizletclone.other.Constants.KEY_PASSWORD
+import com.example.quizletclone.other.Constants.NO_PASSWORD
+import com.example.quizletclone.other.Constants.NO_USERNAME
 import com.example.quizletclone.other.Status
 import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.internal.http.HttpMethod
@@ -38,6 +42,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
 
     private var currentUsername: String ? = null
     private var currentPassword: String ? = null
+    private val args: LoginFragmentArgs by navArgs()
 
 
     override fun onCreateView(
@@ -64,6 +69,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
 
             currentUsername = userName
             currentPassword = password
+
             viewModel.login(userName, password)
         }
 
@@ -72,10 +78,10 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
                 when(it.status){
                     Status.SUCCESS -> {
 
-                        Timber.i("In success login")
                         binding.loginProgressBar.visibility = View.GONE
-
-                        sharedPref.edit().putString(Constants.KEY_LOGGED_IN_USERNAME, currentUsername).apply()
+                        Timber.i(currentUsername)
+                        sharedPref.edit().putString(KEY_LOGGED_IN_USERNAME, currentUsername).apply()
+                        sharedPref.edit().putString(KEY_LOGGED_IN_EMAIL, args.email).apply()
                         sharedPref.edit().putString(KEY_PASSWORD, currentPassword).apply()
 
                         authenticateAPI(currentUsername?: "" , currentPassword ?: "")
@@ -101,26 +107,30 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
         //default value NO_EMAIL AND NO_PASSWORD
         //use return statement to check if user is logged in
         currentUsername = sharedPref.getString(
-            Constants.KEY_LOGGED_IN_USERNAME,
-            Constants.NO_USERNAME
-        ) ?: Constants.NO_USERNAME
+            KEY_LOGGED_IN_USERNAME,
+            NO_USERNAME
+        ) ?: NO_USERNAME
         currentPassword = sharedPref.getString(
-            Constants.KEY_PASSWORD,
-            Constants.NO_PASSWORD
-        ) ?: Constants.NO_PASSWORD
-        return currentUsername != Constants.NO_USERNAME && currentPassword != Constants.NO_PASSWORD
+            KEY_PASSWORD,
+            NO_PASSWORD
+        ) ?: NO_PASSWORD
+        return currentUsername != NO_USERNAME && currentPassword != NO_PASSWORD
     }
 
 
     //function is called we pop loginFragment off of backstack killing it and redirect to cemetery list fragment
     private fun redirectLogin() {
 
+        val option = NavOptions.Builder()
+            .setPopUpTo(R.id.homeFragment, true)
+            .build()
         findNavController().navigate(
-            LoginFragmentDirections.actionLoginFragmentToHomeFragment()
+            LoginFragmentDirections.actionLoginFragmentToHomeFragment(), option
         )
     }
 
     private fun authenticateAPI(userName: String, password: String) {
+
         basicAuthInterceptor.userName = userName
         basicAuthInterceptor.password = password
     }
